@@ -13,10 +13,10 @@ def add_ingreso_alumno(salarioProfesores):
     :type salarioProfesores: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
         salarioProfesores = Alumnos.from_dict(connexion.request.get_json())
-    return 'do some magic!'
+    return 'do some magic!'"""
 
 
 def find_ingreso_alumno(status):
@@ -38,8 +38,8 @@ def update_ingreso_alumno(body):
     :param body: Actualizar ingreso
     :type body: dict | bytes
 
-    :rtype: None
+    :rtype: None"""
     """
     if connexion.request.is_json:
-        body = Profesores.from_dict(connexion.request.get_json())
+        body = Profesores.from_dict(connexion.request.get_json())"""    
     return 'do some magic!'

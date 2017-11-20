@@ -5,7 +5,7 @@ from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
 
 
-def add_ingreso_medio_fisico(ingresoMedioFisico):
+def add_ingreso_medio_fisico(MediosFisicos):
     """
     Añade un nuevo ingreso para un medio fisico
     Añades un nuevo ingreso para un medio fisico
@@ -13,9 +13,9 @@ def add_ingreso_medio_fisico(ingresoMedioFisico):
     :type ingresoMedioFisico: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
-        ingresoMedioFisico = MediosFisicos.from_dict(connexion.request.get_json())
+        ingresoMedioFisico = MediosFisicos.from_dict(connexion.request.get_json())"""
     return 'do some magic!'
 
 
@@ -51,7 +51,7 @@ def update_ingreso_medio_fisico(body):
     :type body: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
-        body = MediosFisicos.from_dict(connexion.request.get_json())
+        body = MediosFisicos.from_dict(connexion.request.get_json())"""
     return 'do some magic!'

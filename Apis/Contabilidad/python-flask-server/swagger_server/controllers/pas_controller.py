@@ -5,7 +5,7 @@ from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
 
 
-def add_salario_pas(salarioPAS):
+def add_salario_pas(PAS):
     """
     Añade un nuevo salario de un PAS
     Añades un nuevo salario a un PAS, pensado para ocasiones puntuales en los que haya que añadir un nuevo salrio.
@@ -13,9 +13,9 @@ def add_salario_pas(salarioPAS):
     :type salarioPAS: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
-        salarioPAS = PAS.from_dict(connexion.request.get_json())
+        salarioPAS = PAS.from_dict(connexion.request.get_json())"""
     return 'do some magic!'
 
 
@@ -39,7 +39,7 @@ def update_salario_pas(body):
     :type body: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
         body = PAS.from_dict(connexion.request.get_json())
-    return 'do some magic!'
+    return 'do some magic!'"""

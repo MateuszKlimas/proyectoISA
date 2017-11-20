@@ -13,10 +13,10 @@ def add_salario(salarioProfesores):
     :type salarioProfesores: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
-        salarioProfesores = Profesores.from_dict(connexion.request.get_json())
-    return 'do some magic!'
+        salarioProfesores = salarioProfesores.from_dict(connexion.request.get_json())
+    return 'do some magic!'"""
 
 
 def find_profesorby_id(status):
@@ -39,7 +39,7 @@ def update_salario(body):
     :type body: dict | bytes
 
     :rtype: None
-    """
+    """"""
     if connexion.request.is_json:
         body = Profesores.from_dict(connexion.request.get_json())
-    return 'do some magic!'
+    return 'do some magic!'"""
