@@ -1,4 +1,5 @@
 import connexion
+from swagger_server.models.medios_fisicos import MediosFisicos
 from datetime import date, datetime
 from typing import List, Dict
 from six import iteritems
