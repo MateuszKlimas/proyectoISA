@@ -285,7 +285,7 @@ paths:
   /MediosFisicos:
     get:
       tags:
-      - "Medios fisicos"
+      - "Medios_fisicos"
       summary: "Devuelve el precio de un medio fisico a partir de su ID."
       description: "Devuelve el precio de un medio fisico a partir de su ID."
       operationId: "find_id_medio_fisico"
@@ -315,10 +315,10 @@ paths:
               $ref: "#/definitions/MediosFisicos"
         400:
           description: "Error al realizar la operacion de busqueda"
-      x-swagger-router-controller: "swagger_server.controllers.medios fisicos_controller"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
     post:
       tags:
-      - "Medios fisicos"
+      - "Medios_fisicos"
       summary: "Añade un nuevo ingreso para un medio fisico"
       description: "Añades un nuevo ingreso para un medio fisico"
       operationId: "add_ingreso_medio_fisico"
@@ -340,10 +340,10 @@ paths:
           description: "Nuevo ingreso del medio fisico correcto"
         405:
           description: "Error al introducir el nuevo ingreso del medio fisico"
-      x-swagger-router-controller: "swagger_server.controllers.medios fisicos_controller"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
     put:
       tags:
-      - "Medios fisicos"
+      - "Medios_fisicos"
       summary: "Actualiza el ingreso para un medio fisico"
       description: "Se cambia el ingreso actual por el nuevo ingreso, es decir, se\
         \ actualiza el ingreso"
@@ -370,11 +370,11 @@ paths:
           description: "Medio Fisico no encontrado"
         405:
           description: "Validation exception"
-      x-swagger-router-controller: "swagger_server.controllers.medios fisicos_controller"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
   /MediosFisicos/disponibilidad:
     get:
       tags:
-      - "Medios fisicos"
+      - "Medios_fisicos"
       summary: "Devuelve la disponibilidad a partir de una fecha introducida."
       description: "Devuelve la disponibilidad a partir de una fecha introducida."
       operationId: "find_disponibilidad_id_medio_fisico"
@@ -404,7 +404,7 @@ paths:
               $ref: "#/definitions/MediosFisicos"
         400:
           description: "Error al realizar la operacion de disponibilidad"
-      x-swagger-router-controller: "swagger_server.controllers.medios fisicos_controller"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
 definitions:
   Profesores:
     type: "object"

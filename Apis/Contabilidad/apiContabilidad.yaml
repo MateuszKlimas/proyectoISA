@@ -1,477 +1,478 @@
-swagger: '2.0'
+---
+swagger: "2.0"
 info:
-  description: >-
-    API para la gestion de la contabilidad de la universidad, profesores y
-    alumnos, ademas de los salrios, precios de las instalciones, matriulas, etc.
-  version: 1.0.0
-  title: API para la gestion de la contabilidad.
-host: 'localhost:8080'
-basePath: /miAplicacionContbilidad
+  description: "API para la gestion de la contabilidad de la universidad, profesores\
+    \ y alumnos, ademas de los salrios, precios de las instalciones, matriulas, etc."
+  version: "1.0.0"
+  title: "API para la gestion de la contabilidad."
+host: "localhost:8080"
+basePath: "/miAplicacionContbilidad"
 tags:
-  - name: Contabilidad
-    description: Operaciones sobre contabilidad
+- name: "Contabilidad"
+  description: "Operaciones sobre contabilidad"
 schemes:
-  - https
+- "https"
 paths:
   /profesores:
-    post:
-      tags:
-        - Profesores
-      summary: Añade un nuevo salario
-      description: >-
-        Añades un nuevo salario a un profesor, pensado para ocasiones puntuales
-        en los que haya que añadir un nuevo salrio.
-      operationId: addSalario
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: salarioProfesores
-          description: El salario que se va a añadir
-          required: true
-          schema:
-            $ref: '#/definitions/Profesores'
-      responses:
-        '200':
-          description: Nuevo salario introducido correctamente
-        '405':
-          description: Error al introducir el nuevo salario
-    put:
-      tags:
-        - Profesores
-      summary: Actualiza el salario de un docente
-      description: >-
-        Se cambia el salario actual por el nuevo salario, es decir, se actualiza
-        el salario
-      operationId: updateSalario
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: El salario a actualizar sera añadido
-          required: true
-          schema:
-            $ref: '#/definitions/Profesores'
-      responses:
-        '200':
-          description: El salario del profesor se actualizo correctamente
-        '400':
-          description: Error al actualizar el salario
-        '404':
-          description: Profesor no encontrado
-        '405':
-          description: Validation exception
     get:
       tags:
-        - Profesores
-      summary: >-
-        Devuelve el salario de un profesor a partir de su codigo de
-        identificacion.
-      description: >-
-        Devuelve el salario de un profesor a partir de su codigo de
-        identificacion.
-      operationId: findProfesorbyID
+      - "Profesores"
+      summary: "Devuelve el salario de un profesor a partir de su codigo de identificacion."
+      description: "Devuelve el salario de un profesor a partir de su codigo de identificacion."
+      operationId: "find_profesorby_id"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: status
-          in: query
-          description: Devuelve el salario del docente a buscar
-          required: true
-          type: array
-          items:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
-          collectionFormat: multi
+      - name: "status"
+        in: "query"
+        description: "Devuelve el salario del docente a buscar"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+        collectionFormat: "multi"
       responses:
-        '200':
-          description: Operacion de busqueda realizada con exito
+        200:
+          description: "Operacion de busqueda realizada con exito"
           schema:
-            type: array
+            type: "array"
             items:
-              $ref: '#/definitions/Profesores'
-        '400':
-          description: Error al realizar la operacion de busqueda
+              $ref: "#/definitions/Profesores"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.profesores_controller"
+    post:
+      tags:
+      - "Profesores"
+      summary: "Añade un nuevo salario"
+      description: "Añades un nuevo salario a un profesor, pensado para ocasiones\
+        \ puntuales en los que haya que añadir un nuevo salrio."
+      operationId: "add_salario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "salarioProfesores"
+        description: "El salario que se va a añadir"
+        required: true
+        schema:
+          $ref: "#/definitions/Profesores"
+      responses:
+        200:
+          description: "Nuevo salario introducido correctamente"
+        405:
+          description: "Error al introducir el nuevo salario"
+      x-swagger-router-controller: "swagger_server.controllers.profesores_controller"
+    put:
+      tags:
+      - "Profesores"
+      summary: "Actualiza el salario de un docente"
+      description: "Se cambia el salario actual por el nuevo salario, es decir, se\
+        \ actualiza el salario"
+      operationId: "update_salario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "El salario a actualizar sera añadido"
+        required: true
+        schema:
+          $ref: "#/definitions/Profesores"
+      responses:
+        200:
+          description: "El salario del profesor se actualizo correctamente"
+        400:
+          description: "Error al actualizar el salario"
+        404:
+          description: "Profesor no encontrado"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "swagger_server.controllers.profesores_controller"
   /pas:
-    post:
-      tags:
-        - PAS
-      summary: Añade un nuevo salario de un PAS
-      description: >-
-        Añades un nuevo salario a un PAS, pensado para ocasiones puntuales en
-        los que haya que añadir un nuevo salrio.
-      operationId: addSalarioPAS
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: salarioPAS
-          description: El salario que se va a añadir
-          required: true
-          schema:
-            $ref: '#/definitions/PAS'
-      responses:
-        '200':
-          description: Nuevo salario introducido correctamente
-        '405':
-          description: Error al introducir el nuevo salario
-    put:
-      tags:
-        - PAS
-      summary: Actualiza el salario de un PAS
-      description: >-
-        Se cambia el salario actual por el nuevo salario, es decir, se actualiza
-        el salario
-      operationId: updateSalarioPAS
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Se actualizara el salario
-          required: true
-          schema:
-            $ref: '#/definitions/PAS'
-      responses:
-        '200':
-          description: El salario del PAS se actualizo correctamente
-        '400':
-          description: Error al actualizar el salario
-        '404':
-          description: PAS no encontrado
-        '405':
-          description: Validation exception
     get:
       tags:
-        - PAS
-      summary: Devuelve el salario de un PAS a partir de su codigo de identificacion.
-      description: Devuelve el salario de un PAS a partir de su codigo de identificacion.
-      operationId: findPASbyID
+      - "PAS"
+      summary: "Devuelve el salario de un PAS a partir de su codigo de identificacion."
+      description: "Devuelve el salario de un PAS a partir de su codigo de identificacion."
+      operationId: "find_pa_sby_id"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: status
-          in: query
-          description: Devuelve el salario del PAS
-          required: true
-          type: array
-          items:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
-          collectionFormat: multi
+      - name: "status"
+        in: "query"
+        description: "Devuelve el salario del PAS"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+        collectionFormat: "multi"
       responses:
-        '200':
-          description: Operacion de busqueda realizada con exito
+        200:
+          description: "Operacion de busqueda realizada con exito"
           schema:
-            type: array
+            type: "array"
             items:
-              $ref: '#/definitions/PAS'
-        '400':
-          description: Error al realizar la operacion de busqueda
+              $ref: "#/definitions/PAS"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
+    post:
+      tags:
+      - "PAS"
+      summary: "Añade un nuevo salario de un PAS"
+      description: "Añades un nuevo salario a un PAS, pensado para ocasiones puntuales\
+        \ en los que haya que añadir un nuevo salrio."
+      operationId: "add_salario_pas"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "salarioPAS"
+        description: "El salario que se va a añadir"
+        required: true
+        schema:
+          $ref: "#/definitions/PAS"
+      responses:
+        200:
+          description: "Nuevo salario introducido correctamente"
+        405:
+          description: "Error al introducir el nuevo salario"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
+    put:
+      tags:
+      - "PAS"
+      summary: "Actualiza el salario de un PAS"
+      description: "Se cambia el salario actual por el nuevo salario, es decir, se\
+        \ actualiza el salario"
+      operationId: "update_salario_pas"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Se actualizara el salario"
+        required: true
+        schema:
+          $ref: "#/definitions/PAS"
+      responses:
+        200:
+          description: "El salario del PAS se actualizo correctamente"
+        400:
+          description: "Error al actualizar el salario"
+        404:
+          description: "PAS no encontrado"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
   /alumnos:
-    post:
-      tags:
-        - Alumnos
-      summary: Añade un nuevo ingreso de un alumno
-      description: Añades un nuevo ingreso de un alumno
-      operationId: addIngresoAlumno
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: salarioProfesores
-          description: El ingreso que se va a añadir
-          required: true
-          schema:
-            $ref: '#/definitions/Alumnos'
-      responses:
-        '200':
-          description: Nuevo ingreso introducido correctamente
-        '405':
-          description: Error al introducir el nuevo ingreso
-    put:
-      tags:
-        - Alumnos
-      summary: Actualiza el ingreso de un alumno
-      description: >-
-        Se cambia el ingreso actual por el nuevo ingreso, es decir, se actualiza
-        el ingreso
-      operationId: updateIngresoAlumno
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Actualizar ingreso
-          required: true
-          schema:
-            $ref: '#/definitions/Profesores'
-      responses:
-        '200':
-          description: El ingreso del alumno se actualizo correctamente
-        '400':
-          description: Error al actualizar el salario
-        '404':
-          description: Alumno no encontrado
-        '405':
-          description: Validation exception
     get:
       tags:
-        - Alumnos
-      summary: Devuelve los ingresos de un alumno a partir de su ID.
-      description: >-
-        Devuelve el ingreso de un alumno a partir de su codigo de
-        identificacion.
-      operationId: findIngresoAlumno
+      - "Alumnos"
+      summary: "Devuelve los ingresos de un alumno a partir de su ID."
+      description: "Devuelve el ingreso de un alumno a partir de su codigo de identificacion."
+      operationId: "find_ingreso_alumno"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: status
-          in: query
-          description: Devuelve los ingresos de un alumno
-          required: true
-          type: array
-          items:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
-          collectionFormat: multi
+      - name: "status"
+        in: "query"
+        description: "Devuelve los ingresos de un alumno"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+        collectionFormat: "multi"
       responses:
-        '200':
-          description: Operacion de busquedarealizada con exito
+        200:
+          description: "Operacion de busquedarealizada con exito"
           schema:
-            type: array
+            type: "array"
             items:
-              $ref: '#/definitions/Alumnos'
-        '400':
-          description: Error al realizar la operacion de busqueda
+              $ref: "#/definitions/Alumnos"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
+    post:
+      tags:
+      - "Alumnos"
+      summary: "Añade un nuevo ingreso de un alumno"
+      description: "Añades un nuevo ingreso de un alumno"
+      operationId: "add_ingreso_alumno"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "salarioProfesores"
+        description: "El ingreso que se va a añadir"
+        required: true
+        schema:
+          $ref: "#/definitions/Alumnos"
+      responses:
+        200:
+          description: "Nuevo ingreso introducido correctamente"
+        405:
+          description: "Error al introducir el nuevo ingreso"
+      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
+    put:
+      tags:
+      - "Alumnos"
+      summary: "Actualiza el ingreso de un alumno"
+      description: "Se cambia el ingreso actual por el nuevo ingreso, es decir, se\
+        \ actualiza el ingreso"
+      operationId: "update_ingreso_alumno"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Actualizar ingreso"
+        required: true
+        schema:
+          $ref: "#/definitions/Profesores"
+      responses:
+        200:
+          description: "El ingreso del alumno se actualizo correctamente"
+        400:
+          description: "Error al actualizar el salario"
+        404:
+          description: "Alumno no encontrado"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
   /MediosFisicos:
-    post:
-      tags:
-        - Medios fisicos
-      summary: Añade un nuevo ingreso para un medio fisico
-      description: Añades un nuevo ingreso para un medio fisico
-      operationId: addIngresoMedioFisico
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: ingresoMedioFisico
-          description: El ingreso del medio fisico que se va a añadir
-          required: true
-          schema:
-            $ref: '#/definitions/MediosFisicos'
-      responses:
-        '200':
-          description: Nuevo ingreso del medio fisico correcto
-        '405':
-          description: Error al introducir el nuevo ingreso del medio fisico
-    put:
-      tags:
-        - Medios fisicos
-      summary: Actualiza el ingreso para un medio fisico
-      description: >-
-        Se cambia el ingreso actual por el nuevo ingreso, es decir, se actualiza
-        el ingreso
-      operationId: updateIngresoMedioFisico
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: El precio del medio fisico que se va a actualizar
-          required: true
-          schema:
-            $ref: '#/definitions/MediosFisicos'
-      responses:
-        '200':
-          description: El precio del medio fisico se actualizo correctamente
-        '400':
-          description: Error al actualizar el precio del medio fisico
-        '404':
-          description: Medio Fisico no encontrado
-        '405':
-          description: Validation exception
     get:
       tags:
-        - Medios fisicos
-      summary: Devuelve el precio de un medio fisico a partir de su ID.
-      description: Devuelve el precio de un medio fisico a partir de su ID.
-      operationId: findIDMedioFisico
+      - "Medios_fisicos"
+      summary: "Devuelve el precio de un medio fisico a partir de su ID."
+      description: "Devuelve el precio de un medio fisico a partir de su ID."
+      operationId: "find_id_medio_fisico"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: status
-          in: query
-          description: Devuelve el precio de un medio fisico
-          required: true
-          type: array
-          items:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
-          collectionFormat: multi
+      - name: "status"
+        in: "query"
+        description: "Devuelve el precio de un medio fisico"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+        collectionFormat: "multi"
       responses:
-        '200':
-          description: Operacion de busqueda realizada con exito
+        200:
+          description: "Operacion de busqueda realizada con exito"
           schema:
-            type: array
+            type: "array"
             items:
-              $ref: '#/definitions/MediosFisicos'
-        '400':
-          description: Error al realizar la operacion de busqueda
+              $ref: "#/definitions/MediosFisicos"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
+    post:
+      tags:
+      - "Medios_fisicos"
+      summary: "Añade un nuevo ingreso para un medio fisico"
+      description: "Añades un nuevo ingreso para un medio fisico"
+      operationId: "add_ingreso_medio_fisico"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "ingresoMedioFisico"
+        description: "El ingreso del medio fisico que se va a añadir"
+        required: true
+        schema:
+          $ref: "#/definitions/MediosFisicos"
+      responses:
+        200:
+          description: "Nuevo ingreso del medio fisico correcto"
+        405:
+          description: "Error al introducir el nuevo ingreso del medio fisico"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
+    put:
+      tags:
+      - "Medios_fisicos"
+      summary: "Actualiza el ingreso para un medio fisico"
+      description: "Se cambia el ingreso actual por el nuevo ingreso, es decir, se\
+        \ actualiza el ingreso"
+      operationId: "update_ingreso_medio_fisico"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "El precio del medio fisico que se va a actualizar"
+        required: true
+        schema:
+          $ref: "#/definitions/MediosFisicos"
+      responses:
+        200:
+          description: "El precio del medio fisico se actualizo correctamente"
+        400:
+          description: "Error al actualizar el precio del medio fisico"
+        404:
+          description: "Medio Fisico no encontrado"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
   /MediosFisicos/disponibilidad:
     get:
       tags:
-        - Medios fisicos
-      summary: Devuelve la disponibilidad a partir de una fecha introducida.
-      description: Devuelve la disponibilidad a partir de una fecha introducida.
-      operationId: findDisponibilidadIDMedioFisico
+      - "Medios_fisicos"
+      summary: "Devuelve la disponibilidad a partir de una fecha introducida."
+      description: "Devuelve la disponibilidad a partir de una fecha introducida."
+      operationId: "find_disponibilidad_id_medio_fisico"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          type: array
-          items:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
-          collectionFormat: multi
+      - name: "status"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+        collectionFormat: "multi"
       responses:
-        '200':
-          description: Operacion de disponibilidad realizada con exito
+        200:
+          description: "Operacion de disponibilidad realizada con exito"
           schema:
-            type: array
+            type: "array"
             items:
-              $ref: '#/definitions/MediosFisicos'
-        '400':
-          description: Error al realizar la operacion de disponibilidad
+              $ref: "#/definitions/MediosFisicos"
+        400:
+          description: "Error al realizar la operacion de disponibilidad"
+      x-swagger-router-controller: "swagger_server.controllers.medios_fisicos_controller"
 definitions:
   Profesores:
-    type: object
+    type: "object"
     properties:
       codigo_profesor:
-        type: string
+        type: "string"
       numero_tramos_docentes:
-        type: integer
+        type: "integer"
       numero_tramos_investigacion:
-        type: integer
+        type: "integer"
       dni:
-        type: string
+        type: "string"
       nombre:
-        type: string
+        type: "string"
       apellidos:
-        type: string
+        type: "string"
       categoria:
-        type: string
+        type: "string"
       id_departamento:
-        type: string
+        type: "string"
       salario:
-        type: number
+        type: "number"
   PAS:
-    type: object
+    type: "object"
     properties:
       codigo_pas:
-        type: string
+        type: "string"
       dni:
-        type: string
+        type: "string"
       nombre:
-        type: string
+        type: "string"
       apellido:
-        type: string
+        type: "string"
       categoria:
-        type: string
+        type: "string"
       antiguedad:
-        type: string
+        type: "string"
   Alumnos:
-    type: object
+    type: "object"
     required:
-      - name
-      - photoUrls
+    - "name"
+    - "photoUrls"
     properties:
       id:
-        type: integer
-        format: int64
+        type: "integer"
+        format: "int64"
       name:
-        type: string
-        example: doggie
+        type: "string"
+        example: "doggie"
       photoUrls:
-        type: array
+        type: "array"
         xml:
-          name: photoUrl
+          name: "photoUrl"
           wrapped: true
         items:
-          type: string
+          type: "string"
   MediosFisicos:
-    type: object
+    type: "object"
     properties:
       id_medio:
-        type: string
+        type: "string"
       disponibilidad:
-        type: boolean
+        type: "boolean"
       tipo:
-        type: string
+        type: "string"
       precio_hora:
-        type: number
+        type: "number"
       capacidad:
-        type: integer
+        type: "integer"
       id_facultad:
-        type: string
+        type: "string"
