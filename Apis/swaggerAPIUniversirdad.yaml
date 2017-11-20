@@ -1,8 +1,6 @@
 swagger: '2.0'
 info:
-  description: >-
-    API sencilla para aprender a crear APIs REST con OpenAPI documents en
-    SWAGGER y a implementarlos con Python-Flask
+  description: API De universidades
   version: 1.0.0
   title: API sencilla para la gestión de universidades
 host: 'localhost:8080'
