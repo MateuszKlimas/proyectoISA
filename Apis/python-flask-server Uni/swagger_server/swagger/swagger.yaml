@@ -1,0 +1,287 @@
+---
+swagger: "2.0"
+info:
+  description: "API De universidades"
+  version: "1.0.0"
+  title: "API sencilla para la gestión de universidades"
+host: "localhost:8080"
+basePath: "/Universidad"
+tags:
+- name: "Universidades"
+  description: "Operaciones sobre las universidades"
+schemes:
+- "https"
+paths:
+  /universidad:
+    get:
+      tags:
+      - "Universidades"
+      summary: "Obtiene universidades"
+      description: "Obtiene un listado de las universidades del sistema."
+      operationId: "obtener_universidad"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tamanoPagina"
+        in: "query"
+        description: "Número de univesidades devueltas"
+        required: true
+        type: "integer"
+      - name: "numeroPaginas"
+        in: "query"
+        description: "Número de páginas devueltas"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Una lista de universidades"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Universidad"
+      x-swagger-router-controller: "swagger_server.controllers.universidades_controller"
+    post:
+      tags:
+      - "Universidades"
+      summary: "Crea una universidad"
+      description: "Añade una universidad a la lista de universidades."
+      operationId: "crear_universidad"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "universidad"
+        description: "La universidad que se va a añadir."
+        required: true
+        schema:
+          $ref: "#/definitions/Universidad"
+      responses:
+        200:
+          description: "Universidad creada correctamente."
+        400:
+          description: "La universidad no ha podido ser creado."
+      x-swagger-router-controller: "swagger_server.controllers.universidades_controller"
+  /universidad/{codUni}:
+    get:
+      tags:
+      - "Universidades"
+      summary: "Devuelve una universidad a partir de su código"
+      description: "Devuelve una única universidad identificada por su codigo de universidad"
+      operationId: "universidad_get_uni"
+      parameters:
+      - name: "codUni"
+        in: "path"
+        description: "Codigo de la universidad"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operación correcta"
+          schema:
+            $ref: "#/definitions/Universidad"
+        404:
+          description: "La universidad no existe."
+      x-swagger-router-controller: "swagger_server.controllers.universidades_controller"
+  /grado:
+    get:
+      tags:
+      - "Grados"
+      summary: "Obtiene una lista de todos los grados del sistema."
+      description: "Obtiene un listado de los grados del sistema."
+      operationId: "get_grados"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tamanoPagina"
+        in: "query"
+        description: "Número de grados devueltas"
+        required: true
+        type: "integer"
+      - name: "numeroPaginas"
+        in: "query"
+        description: "Número de páginas devueltas"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Una lista de grados"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Universidad"
+      x-swagger-router-controller: "swagger_server.controllers.grados_controller"
+    post:
+      tags:
+      - "Grados"
+      summary: "Añade un grado a la base de datos."
+      description: "Añade un grado a nuestra base de datos"
+      operationId: "post_grado"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "grado"
+        description: "El grado  que se va a añadir."
+        required: true
+        schema:
+          $ref: "#/definitions/Grado"
+      responses:
+        200:
+          description: "Grado creado correctamente."
+        404:
+          description: "El grado no ha podido ser creado."
+      x-swagger-router-controller: "swagger_server.controllers.grados_controller"
+  /grado/{codGrado}:
+    get:
+      tags:
+      - "Grados"
+      summary: "Obtienes un grado a partir de su código"
+      description: "Devuelve un objeto del tipo grado con todos sus datos, a partir\
+        \ del código del grado."
+      operationId: "grado_cod_grado_get"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "codGrado"
+        in: "path"
+        description: "Codigo del grado"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Grado devuelto correctamente"
+          schema:
+            $ref: "#/definitions/Grado"
+        404:
+          description: "Ha habido un problema al obtener el grado"
+      x-swagger-router-controller: "swagger_server.controllers.grados_controller"
+  /asignatura:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Obtiene un listado de todas las asignaturas de la Base de datos"
+      description: "Devuelve una lista con las asignaturas."
+      operationId: "get_asignaturas"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tamanoPagina"
+        in: "query"
+        description: "Número de grados devueltos"
+        required: true
+        type: "integer"
+      - name: "numeroPaginas"
+        in: "query"
+        description: "Número de páginas devueltos"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Una lista de asignaturas"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Asignatura"
+        404:
+          description: "No se ha podido devovler las asignaturas"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+    post:
+      tags:
+      - "Asignaturas"
+      summary: "Añadir una asignatura a nuestra Base de datos."
+      description: "Añade una asignatura a nuestra base de datos."
+      operationId: "post_asignatura"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "asignatura"
+        description: "La asignatura que se va a añadir."
+        required: true
+        schema:
+          $ref: "#/definitions/Asignatura"
+      responses:
+        200:
+          description: "La asignatura se ha creado de manera correcta."
+        404:
+          description: "No se ha podido introducir la asignatura."
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /asignatura/{idAsignatura}:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Obtienes una asignatura a partir de su código"
+      description: "Devuelve un objeto del tipo asignatura con todos sus datos, a\
+        \ partir del código del grado."
+      operationId: "asignatura_id_asignatura_get"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "idAsignatura"
+        in: "path"
+        description: "Codigo de la asignatura"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Asignatura devuelta correctamente"
+          schema:
+            $ref: "#/definitions/Asignatura"
+        404:
+          description: "Ha habido un problema al obtener el grado"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+definitions:
+  Universidad:
+    type: "object"
+    properties:
+      Name:
+        type: "string"
+      Dir:
+        type: "string"
+      codUni:
+        type: "integer"
+  Grado:
+    type: "object"
+    properties:
+      codGrado:
+        type: "integer"
+      nombre:
+        type: "string"
+      idUniversidad:
+        type: "integer"
+      numCredObligatorios:
+        type: "integer"
+      numCredTransversales:
+        type: "integer"
+      numCreadOptativos:
+        type: "integer"
+  Asignatura:
+    type: "object"
+    properties:
+      idAsignatura:
+        type: "integer"
+      nombre:
+        type: "string"
