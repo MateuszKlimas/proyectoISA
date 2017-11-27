@@ -23,10 +23,11 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#definitions/Alumno'
+            $ref: '#/definitions/Alumno'
       responses:
         default:
           description: operaccion correcta
+      x-swagger-router-controller: swagger_server.controllers.alumnos_controller
   /login:
     get:
       tags:
@@ -50,6 +51,7 @@ paths:
           description: Operacion correcta
         '400':
           description: Nombre de usuario o contraseña incorrectos
+      x-swagger-router-controller: swagger_server.controllers.alumnos_controller
   /logout:
     get:
       tags:
@@ -60,6 +62,7 @@ paths:
       responses:
         default:
           description: operacion correcta
+      x-swagger-router-controller: swagger_server.controllers.alumnos_controller
   /creditosasignatura:
     get:
       tags:
@@ -79,13 +82,14 @@ paths:
         '200':
           description: devuelve el nombre de la asignatura y los creditos que tiene
           schema:
-            $ref: '#definitions/Creditos'
+            $ref: '#/definitions/Creditos'
         '404':
           description: La asignatura solicitada no se ha encontrao en la base de datos
+      x-swagger-router-controller: swagger_server.controllers.asignaturas_controller
   '/{nombreusuario}/info':
     get:
       tags:
-        - Informacion personal
+        - Informacion_personal
       summary: Consulta información personal de un alumno
       description: Devuelve un json con la información personal de un alumno
       operationId: consultar_info
@@ -101,14 +105,15 @@ paths:
         '200':
           description: Operacion correcta
           schema:
-            $ref: '#definitions/Alumno'
+            $ref: '#/definitions/Alumno'
         '404':
           description: El alumno no esta registrado en la base de datos
+      x-swagger-router-controller: swagger_server.controllers.informacion_personal_controller
   '/{nombreusuario}/cobros':
     get:
       tags:
-        - Informacion personal
-      summary: Consulta informacion económica de la matrícula
+        - Informacion_personal
+      summary: Consuta informacion económica de la matrícula
       description: >-
         Consulta el importe total de la matrícula y el importe de los pagos a
         plazos
@@ -130,10 +135,11 @@ paths:
             $ref: '#/definitions/Resumen_Pagos'
         '404':
           description: El alumno no esta registrado en la base de datos
+      x-swagger-router-controller: swagger_server.controllers.informacion_personal_controller
   '/{nombreusuario}/notas':
     get:
       tags:
-        - Informacion personal
+        - Informacion_personal
       summary: consulta las notas
       description: >-
         Consulta las notas de todas las asignaturas matriculadas, así como otra
@@ -156,13 +162,14 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#definitions/Nota'
+              $ref: '#/definitions/Nota'
         '404':
           description: El alumno no esta registrado en la base de datos
+      x-swagger-router-controller: swagger_server.controllers.informacion_personal_controller
   '/{nombreusuario}/creditos':
     get:
       tags:
-        - Informacion personal
+        - Informacion_personal
       summary: creditos convalidados
       description: >-
         muestra una lista de los creditos convalidados del alimno asi como la
@@ -184,15 +191,16 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#definitions/Creditos'
+              $ref: '#/definitions/Creditos'
         '400':
           description: el usuario no tiene creditos reconocidos
         '404':
           description: el usuario no se encuentra en la base de datos
+      x-swagger-router-controller: swagger_server.controllers.informacion_personal_controller
   '/{nombreusuario}/findpago':
     get:
       tags:
-        - Informacion personal
+        - Informacion_personal
       summary: Devuelve un recibo
       description: Devuelve el recibo del mes que se especifique en la llamada
       operationId: find_pago
@@ -214,11 +222,12 @@ paths:
           description: informacion economica sobre el recibo buscado
           schema:
             type: object
-            $ref: '#definitions/Pago'
+            $ref: '#/definitions/Pago'
         '400':
           description: No hay pago para el mes solicitado
         '404':
           description: El alumno solicitado no seencuentra en la base de datos
+      x-swagger-router-controller: swagger_server.controllers.informacion_personal_controller
   /matricula:
     post:
       tags:
@@ -244,12 +253,13 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#definitions/Asignatura'
+              $ref: '#/definitions/Asignatura'
       responses:
         '200':
           description: operacion correcta
         '400':
           description: nombre deusuario o contraseña erroneos
+      x-swagger-router-controller: swagger_server.controllers.matricula_controller
 definitions:
   Asignatura:
     type: object
@@ -283,7 +293,7 @@ definitions:
       array_pagos:
         type: array
         items:
-          $ref: '#definitions/Pago'
+          $ref: '#/definitions/Pago'
   Pago:
     type: object
     properties:
