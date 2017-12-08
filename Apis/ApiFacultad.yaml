@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
   description: API De universidades
-  version: 1.0.0
-  title: API sencilla para la gestión de universidades
+  version: 0.8.0
+  title: API para la gestión de facultades
 host: 'localhost:8080'
 basePath: /Facultad
 tags:
@@ -445,6 +445,10 @@ definitions:
         type: string
       codGrado:
         type: integer
+      tipoAsignatura:
+        type: string
+      numCreditos:
+        type: string
     required:
       - idAsignatura
       - nombre
