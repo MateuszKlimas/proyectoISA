@@ -3,17 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Práctica Ingeniería del Software 2017">
-	<meta name="author" content="Piero Alejandro Rodríguez Angulo">
-	<link rel="icon" href="./img/LogoFavi.png">
-	<title>Página Inicio | UV Virtual</title>
-	<link href="./css/bootstrap.min.css" rel="stylesheet">
-	<link href="./css/starter-template.css" rel="stylesheet">
+	
+	<title>Area alumno</title>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='LogoFavi.png') }}">
+	
+
+	<!-- Bootstrap core CSS -->
+	<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='./css/starter-template.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
 	<header> <!-- Cabecera -->
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<img src="img/LogoOscuroElegante.png" alt="Logo" height="35" width="35">
+			<img src="{{ url_for('static', filename='img/LogoOscuroElegante.png') }}" alt="Logo" height="35" width="35">
 			&ensp;
 			<a class="navbar-brand" href="#">Universidad de Villamayor</a><!-- Inicio -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +94,7 @@
 	<!-- JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script>window.jQuery || document.write('<script src="./js/jquery.min.js"><\/script>')</script>
-	<script src="./js/popper.min.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
+	<script src="{{ url_for('static', filename='./js/popper.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='./js/bootstrap.min.js') }}"></script>
 </body>
 </html>

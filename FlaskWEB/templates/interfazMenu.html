@@ -11,18 +11,18 @@
     <title>Universidad Villamayor</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/grayscale.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/grayscale.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/LogoFavi.png">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='LogoFavi.png') }}">
 
   </head>
 
@@ -31,7 +31,7 @@
     <!-- Navegacion -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <img src="img/LogoOscuroElegante.png" alt="Logo" height="35" width="35">
+        <img src="{{ url_for('static', filename='img/LogoOscuroElegante.png') }}" alt="Logo" height="35" width="35">
         &ensp;
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Universidad de Villamayor</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@
             <div class="col-lg-8 mx-auto">
               <br><br><br>
               <h1 class="brand-heading">¡Bienvenido!</h1>
-              <img src="img/img-uni.jpg" alt="Imagen universidad" height="400" width="700" class="bordeImagen"/>
+              <img src="{{ url_for('static', filename='img/img-uni.jpg') }}" alt="Imagen universidad" height="400" width="700" class="bordeImagen"/>
               <p class="intro-text">Te damos la bienvenida a la prestigiosa universidad de Villamayor.
                 <br>Estamos a su disposición.</p>
               <a href="#sobrenosotros" class="btn btn-circle js-scroll-trigger">
@@ -134,17 +134,17 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/grayscale.js"></script>
+    <script src="{{ url_for('static', filename='js/grayscale.js') }}"></script>
 
   </body>
 
