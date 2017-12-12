@@ -1,0 +1,25 @@
+import connexion
+import psycopg2
+import sys
+import pprint
+import json
+
+def consultar_info(nombreusuario):
+
+
+    conn_string = "host='localhost' dbname='Pedro' user='postgres' password='123456'"
+	# print the connection string we will use to connect
+    print ("Connecting to database\n")
+ 
+	# get a connection, if a connect cannot be made an exception will be raised here
+    conn = psycopg2.connect(conn_string)
+ 
+	# conn.cursor will return a cursor object, you can use this cursor to perform queries
+    cursor = conn.cursor()
+ 
+	# execute our Query
+    cursor.execute("SELECT * FROM alumno")
+
+    records = json.dumps(cursor.fetchall())
+
+    return(records)
