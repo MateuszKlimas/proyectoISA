@@ -17,7 +17,8 @@ CREATE TABLE "alumno"(
  "apellidosAlumno" Text NOT NULL,
  "direccionAlumno" Text NOT NULL,
  "correoAlumno" Text NOT NULL,
- "telefonoAlumno" Text NOT NULL
+ "telefonoAlumno" Text NOT NULL,
+ "id_grado" Integer NOT NULL
 )
 ;
 
@@ -32,6 +33,8 @@ CREATE TABLE "matriculacion"(
  "id_matriculacion" Integer NOT NULL,
  "numConvocatoria" Integer NOT NULL,
  "numMatricula" Integer NOT NULL,
+ "notaAlumno"  Double precision,
+ "aprobado" boolean NOT NULL,
  "id_alumno" Integer,
  "id_gradoAsignatura" Integer NOT NULL
 )
