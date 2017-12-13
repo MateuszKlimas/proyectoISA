@@ -1,4 +1,6 @@
 import connexion
+import psycopg2
+import json
 from swagger_server.models.departamento_contable import DepartamentoContable
 from datetime import date, datetime
 from typing import List, Dict
@@ -29,4 +31,16 @@ def find_departamento_contable(id_departamento_contable):
 
     :rtype: List[DepartamentoContable]
     """
-    return 'do some magic!'
+    conn_string = "host='localhost' dbname='DepartamentoContable' user='postgres' password='1234'"
+    # get a connection, if a connect cannot be made an exception will be raised here
+    conn = psycopg2.connect(conn_string)
+
+    # conn.cursor will return a cursor object, you can use this cursor to perform queries
+    cursor = conn.cursor()
+
+    # execute our Query
+    cursor.execute("SELECT * FROM \"departamentoContable\"s")
+
+    # retrieve the records from the database
+    records = cursor.fetchall()
+    return json.dumps(records)
