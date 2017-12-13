@@ -36,6 +36,18 @@ class TestAsignaturasController(BaseTestCase):
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
+    def test_get_asignaturas_matriculadas(self):
+        """
+        Test case for get_asignaturas_matriculadas
+
+        Asignaturas matriculadas
+        """
+        query_string = [('id_alumno', 'id_alumno_example')]
+        response = self.client.open('/secretaria-alumnos/asignaturasmariculadas',
+                                    method='GET',
+                                    query_string=query_string)
+        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
+
 
 if __name__ == '__main__':
     import unittest

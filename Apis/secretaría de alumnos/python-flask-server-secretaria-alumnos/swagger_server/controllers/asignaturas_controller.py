@@ -29,3 +29,15 @@ def get_asignaturas_disponibles(id_alumno):
     :rtype: List[Asignatura]
     """
     return 'do some magic!'
+
+
+def get_asignaturas_matriculadas(id_alumno):
+    """
+    Asignaturas matriculadas
+    Devuelve una lista con las asignaturas en las que esta matriculado el alumno
+    :param id_alumno: id del alumno
+    :type id_alumno: str
+
+    :rtype: List[Asignatura]
+    """
+    return 'do some magic!'

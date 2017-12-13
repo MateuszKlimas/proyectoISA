@@ -79,6 +79,32 @@ paths:
         404:
           description: "El alumno no se encuentra enlabase de datos"
       x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /asignaturasmariculadas:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Asignaturas matriculadas"
+      description: "Devuelve una lista con las asignaturas en las que esta matriculado\
+        \ el alumno"
+      operationId: "get_asignaturas_matriculadas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "devuelve una lista con las asignauras matriculadas"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Asignatura"
+        404:
+          description: "El alumno no se encuentra enlabase de datos"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
   /info:
     get:
       tags:
@@ -274,6 +300,8 @@ definitions:
         type: "string"
       telefono:
         type: "string"
+      id_grado:
+        type: "integer"
   Resumen_Pagos:
     type: "object"
     properties:
