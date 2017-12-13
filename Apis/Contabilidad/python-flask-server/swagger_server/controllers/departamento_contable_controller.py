@@ -19,6 +19,14 @@ def add_departamento_contable(departamento_contable):
     """
     if connexion.request.is_json:
         departamento_contable = DepartamentoContable.from_dict(connexion.request.get_json())
+    
+    conn_string = "host='localhost' dbname='DepartamentoContable' user='postgres' password='1234'"
+    # get a connection, if a connect cannot be made an exception will be raised here
+    conn = psycopg2.connect(conn_string)
+    dep = departamento_contable
+    # conn.cursor will return a cursor object, you can use this cursor to perform queries
+    cursor = conn.cursor()
+    cursor.execute("insert into departamentoContable"+ "values(" + dep[0] + "," + dep[1] + ","+ dep[2] + ","+ dep[3] + ")")    
     return 'do some magic!'
 
 
