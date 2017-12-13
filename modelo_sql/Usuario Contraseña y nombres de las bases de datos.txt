@@ -1,0 +1,14 @@
+Usuario ISA
+contraseña 1234
+
+Nombres de las bases de datos:
+
+Centros
+
+SecretariaAlumnos
+
+DepartamentoContable
+
+DepartamentoPas
+
+DepartamentoProfesores
