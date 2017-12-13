@@ -28,7 +28,7 @@ def add_departamento_contable(departamento_contable):
     cursor = conn.cursor()
     cursor.execute("INSERT INTO \"departamentoContable\" VALUES (" + repr(dep.id_departamento_contable) + "," + "'" + dep.nombre_departamento_contable + "'" + ","+  "'" + dep.descripcion_departamento_contable + "'" + ","+ repr(dep.id_facultad) + ")")    
     conn.commit()
-    #conn.close()
+    conn.close()
     return ""
 
 
