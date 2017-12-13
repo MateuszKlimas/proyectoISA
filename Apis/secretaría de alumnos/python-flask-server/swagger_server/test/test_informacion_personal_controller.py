@@ -21,8 +21,10 @@ class TestInformacionPersonalController(BaseTestCase):
 
         creditos convalidados
         """
-        response = self.client.open('/alumnos/{nombreusuario}/creditos'.format(nombreusuario='nombreusuario_example'),
-                                    method='GET')
+        query_string = [('id_alumno', 'id_alumno_example')]
+        response = self.client.open('/secretaria-alumnos/creditos',
+                                    method='GET',
+                                    query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_consultar_info(self):
@@ -31,8 +33,10 @@ class TestInformacionPersonalController(BaseTestCase):
 
         Consulta información personal de un alumno
         """
-        response = self.client.open('/alumnos/{nombreusuario}/info'.format(nombreusuario='nombreusuario_example'),
-                                    method='GET')
+        query_string = [('id_alumno', 'id_alumno_example')]
+        response = self.client.open('/secretaria-alumnos/info',
+                                    method='GET',
+                                    query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_consultar_notas(self):
@@ -41,8 +45,10 @@ class TestInformacionPersonalController(BaseTestCase):
 
         consulta las notas
         """
-        response = self.client.open('/alumnos/{nombreusuario}/notas'.format(nombreusuario='nombreusuario_example'),
-                                    method='GET')
+        query_string = [('id_alumno', 'id_alumno_example')]
+        response = self.client.open('/secretaria-alumnos/notas',
+                                    method='GET',
+                                    query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_consultar_pagos(self):
@@ -51,8 +57,10 @@ class TestInformacionPersonalController(BaseTestCase):
 
         Consuta informacion económica de la matrícula
         """
-        response = self.client.open('/alumnos/{nombreusuario}/cobros'.format(nombreusuario='nombreusuario_example'),
-                                    method='GET')
+        query_string = [('id_alumno', 'id_alumno_example')]
+        response = self.client.open('/secretaria-alumnos/cobros',
+                                    method='GET',
+                                    query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_find_pago(self):
@@ -61,8 +69,9 @@ class TestInformacionPersonalController(BaseTestCase):
 
         Devuelve un recibo
         """
-        query_string = [('mes', 56)]
-        response = self.client.open('/alumnos/{nombreusuario}/findpago'.format(nombreusuario='nombreusuario_example'),
+        query_string = [('id_usuario', 'id_usuario_example'),
+                        ('mes', 56)]
+        response = self.client.open('/secretaria-alumnos/findpago',
                                     method='GET',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))

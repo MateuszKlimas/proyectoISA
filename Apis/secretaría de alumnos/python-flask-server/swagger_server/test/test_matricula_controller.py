@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import
 
-from swagger_server.models.asignatura import Asignatura
+from swagger_server.models.asignatura_matricula import AsignaturaMatricula
 from . import BaseTestCase
 from six import BytesIO
 from flask import json
@@ -17,10 +17,9 @@ class TestMatriculaController(BaseTestCase):
 
         Automatricula
         """
-        asignaturas = [Asignatura()]
-        query_string = [('nombre_usuario', 'nombre_usuario_example'),
-                        ('contrasea', 56)]
-        response = self.client.open('/alumnos/matricula',
+        asignaturas = [AsignaturaMatricula()]
+        query_string = [('id_usuario', 'id_usuario_example')]
+        response = self.client.open('/secretaria-alumnos/matricula',
                                     method='POST',
                                     data=json.dumps(asignaturas),
                                     content_type='application/json',

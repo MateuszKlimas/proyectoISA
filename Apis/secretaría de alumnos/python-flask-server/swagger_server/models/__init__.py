@@ -4,6 +4,7 @@ from __future__ import absolute_import
 # import models into model package
 from .alumno import Alumno
 from .asignatura import Asignatura
+from .asignatura_matricula import AsignaturaMatricula
 from .creditos import Creditos
 from .nota import Nota
 from .pago import Pago

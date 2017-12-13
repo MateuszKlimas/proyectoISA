@@ -21,13 +21,13 @@ python3 -m swagger_server
 and open your browser to here:
 
 ```
-http://localhost:8080/alumnos/ui/
+http://localhost:8080/secretaria-alumnos/ui/
 ```
 
 Your Swagger definition lives here:
 
 ```
-http://localhost:8080/alumnos/swagger.json
+http://localhost:8080/secretaria-alumnos/swagger.json
 ```
 
 To launch the integration tests, use tox:

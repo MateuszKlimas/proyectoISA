@@ -10,60 +10,60 @@ from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
 
 
-def consultar_creditos_reconocidos(nombreusuario):
+def consultar_creditos_reconocidos(id_alumno):
     """
     creditos convalidados
     muestra una lista de los creditos convalidados del alimno asi como la asignatura a la que pertenecen
-    :param nombreusuario: nombre del usuario
-    :type nombreusuario: str
+    :param id_alumno: id del usuario
+    :type id_alumno: str
 
     :rtype: List[Creditos]
     """
     return 'do some magic!'
 
 
-def consultar_info(nombreusuario):
+def consultar_info(id_alumno):
     """
     Consulta información personal de un alumno
     Devuelve un json con la información personal de un alumno
-    :param nombreusuario: nombre de usuario del alumno
-    :type nombreusuario: str
+    :param id_alumno: id del alumno
+    :type id_alumno: str
 
     :rtype: Alumno
     """
     return 'do some magic!'
 
 
-def consultar_notas(nombreusuario):
+def consultar_notas(id_alumno):
     """
     consulta las notas
     Consulta las notas de todas las asignaturas matriculadas, así como otra información relacionada con las notas de la asignatura, como el número de créditos de la asignatura etc.
-    :param nombreusuario: nombre del usuario
-    :type nombreusuario: str
+    :param id_alumno: id del alumno
+    :type id_alumno: str
 
     :rtype: List[Nota]
     """
     return 'do some magic!'
 
 
-def consultar_pagos(nombreusuario):
+def consultar_pagos(id_alumno):
     """
     Consuta informacion económica de la matrícula
     Consulta el importe total de la matrícula y el importe de los pagos a plazos
-    :param nombreusuario: nombre de usuario del alumno
-    :type nombreusuario: str
+    :param id_alumno: id del alumno
+    :type id_alumno: str
 
     :rtype: ResumenPagos
     """
     return 'do some magic!'
 
 
-def find_pago(nombreusuario, mes):
+def find_pago(id_usuario, mes):
     """
     Devuelve un recibo
     Devuelve el recibo del mes que se especifique en la llamada
-    :param nombreusuario: nombre del usuario
-    :type nombreusuario: str
+    :param id_usuario: id del usuario
+    :type id_usuario: str
     :param mes: mes correspondiente al pago buscado
     :type mes: int
 

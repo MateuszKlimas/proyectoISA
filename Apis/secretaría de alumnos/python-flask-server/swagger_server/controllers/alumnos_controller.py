@@ -18,27 +18,3 @@ def crear_alumno(alumno):
     if connexion.request.is_json:
         alumno = Alumno.from_dict(connexion.request.get_json())
     return 'do some magic!'
-
-
-def login_alumno(nombre_usuario, contrasea):
-    """
-    Login
-    
-    :param nombre_usuario: nombre del usuario
-    :type nombre_usuario: str
-    :param contrasea: contraseña del usuario
-    :type contrasea: str
-
-    :rtype: None
-    """
-    return 'do some magic!'
-
-
-def logout_alumno():
-    """
-    Logout
-    
-
-    :rtype: None
-    """
-    return 'do some magic!'

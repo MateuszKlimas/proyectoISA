@@ -5,7 +5,7 @@ info:
   version: "1.0.0"
   title: "API para la gestión de alumnos"
 host: "localhost:8080"
-basePath: "/alumnos"
+basePath: "/secretaria-alumnos"
 tags:
 - name: "Alumnos"
   description: "operaciones basicas sobre los de los alumnos"
@@ -28,42 +28,6 @@ paths:
       responses:
         default:
           description: "operaccion correcta"
-      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
-  /login:
-    get:
-      tags:
-      - "Alumnos"
-      summary: "Login"
-      description: ""
-      operationId: "login_alumno"
-      parameters:
-      - name: "nombre_usuario"
-        in: "query"
-        description: "nombre del usuario"
-        required: true
-        type: "string"
-      - name: "contrasea"
-        in: "query"
-        description: "contraseña del usuario"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Operacion correcta"
-        400:
-          description: "Nombre de usuario o contraseña incorrectos"
-      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
-  /logout:
-    get:
-      tags:
-      - "Alumnos"
-      summary: "Logout"
-      description: ""
-      operationId: "logout_alumno"
-      parameters: []
-      responses:
-        default:
-          description: "operacion correcta"
       x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
   /creditosasignatura:
     get:
@@ -89,7 +53,33 @@ paths:
           description: "La asignatura solicitada no se ha encontrao en la base de\
             \ datos"
       x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
-  /{nombreusuario}/info:
+  /asignaturasdisponibles:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Asignaturas disponibles para matricular"
+      description: "Devuelve una lista con las asignaturas en las que puede matricularse\
+        \ un alumno"
+      operationId: "get_asignaturas_disponibles"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "devuelve una lista con las asignauras disponibles para matricular"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Asignatura"
+        404:
+          description: "El alumno no se encuentra enlabase de datos"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /info:
     get:
       tags:
       - "Informacion_personal"
@@ -99,9 +89,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nombreusuario"
-        in: "path"
-        description: "nombre de usuario del alumno"
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
         required: true
         type: "string"
       responses:
@@ -112,7 +102,7 @@ paths:
         404:
           description: "El alumno no esta registrado en la base de datos"
       x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
-  /{nombreusuario}/cobros:
+  /cobros:
     get:
       tags:
       - "Informacion_personal"
@@ -123,9 +113,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nombreusuario"
-        in: "path"
-        description: "nombre de usuario del alumno"
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
         required: true
         type: "string"
       responses:
@@ -137,7 +127,7 @@ paths:
         404:
           description: "El alumno no esta registrado en la base de datos"
       x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
-  /{nombreusuario}/notas:
+  /notas:
     get:
       tags:
       - "Informacion_personal"
@@ -149,9 +139,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nombreusuario"
-        in: "path"
-        description: "nombre del usuario"
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
         required: true
         type: "string"
       responses:
@@ -165,7 +155,7 @@ paths:
         404:
           description: "El alumno no esta registrado en la base de datos"
       x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
-  /{nombreusuario}/creditos:
+  /creditos:
     get:
       tags:
       - "Informacion_personal"
@@ -176,9 +166,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nombreusuario"
-        in: "path"
-        description: "nombre del usuario"
+      - name: "id_alumno"
+        in: "query"
+        description: "id del usuario"
         required: true
         type: "string"
       responses:
@@ -194,7 +184,7 @@ paths:
         404:
           description: "el usuario no se encuentra en la base de datos"
       x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
-  /{nombreusuario}/findpago:
+  /findpago:
     get:
       tags:
       - "Informacion_personal"
@@ -204,9 +194,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nombreusuario"
-        in: "path"
-        description: "nombre del usuario"
+      - name: "id_usuario"
+        in: "query"
+        description: "id del usuario"
         required: true
         type: "string"
       - name: "mes"
@@ -234,30 +224,30 @@ paths:
       consumes:
       - "application/json"
       parameters:
-      - name: "nombre_usuario"
+      - name: "id_usuario"
         in: "query"
         description: "nombre del usuario"
         required: true
         type: "string"
-      - name: "contrasea"
-        in: "query"
-        description: "contraseña del usuario"
-        required: true
-        type: "integer"
       - in: "body"
         name: "asignaturas"
         required: false
         schema:
           type: "array"
           items:
-            $ref: "#/definitions/Asignatura"
+            $ref: "#/definitions/Asignatura_Matricula"
       responses:
         200:
           description: "operacion correcta"
         400:
-          description: "nombre deusuario o contraseña erroneos"
+          description: "nombre de usuario o contraseña erroneos"
       x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
 definitions:
+  Asignatura_Matricula:
+    type: "object"
+    properties:
+      codigo_asignatura:
+        type: "string"
   Asignatura:
     type: "object"
     properties:
@@ -265,7 +255,9 @@ definitions:
         type: "string"
       codigo_asignatura:
         type: "integer"
-      turno:
+      creditos:
+        type: "string"
+      tipo:
         type: "string"
   Alumno:
     type: "object"
@@ -274,13 +266,13 @@ definitions:
         type: "string"
       apellido:
         type: "string"
-      nombreusuario:
-        type: "string"
-      contraseña:
-        type: "string"
       dni:
         type: "string"
       direccion:
+        type: "string"
+      correo:
+        type: "string"
+      telefono:
         type: "string"
   Resumen_Pagos:
     type: "object"

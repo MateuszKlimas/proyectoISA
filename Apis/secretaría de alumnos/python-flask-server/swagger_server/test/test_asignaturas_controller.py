@@ -2,6 +2,7 @@
 
 from __future__ import absolute_import
 
+from swagger_server.models.asignatura import Asignatura
 from swagger_server.models.creditos import Creditos
 from . import BaseTestCase
 from six import BytesIO
@@ -18,7 +19,19 @@ class TestAsignaturasController(BaseTestCase):
         creditos de cada asignatura
         """
         query_string = [('nombre_asignatura', 'nombre_asignatura_example')]
-        response = self.client.open('/alumnos/creditosasignatura',
+        response = self.client.open('/secretaria-alumnos/creditosasignatura',
+                                    method='GET',
+                                    query_string=query_string)
+        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
+
+    def test_get_asignaturas_disponibles(self):
+        """
+        Test case for get_asignaturas_disponibles
+
+        Asignaturas disponibles para matricular
+        """
+        query_string = [('id_alumno', 'id_alumno_example')]
+        response = self.client.open('/secretaria-alumnos/asignaturasdisponibles',
                                     method='GET',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
