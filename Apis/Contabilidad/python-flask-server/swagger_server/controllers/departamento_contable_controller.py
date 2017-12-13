@@ -26,8 +26,10 @@ def add_departamento_contable(departamento_contable):
     dep = departamento_contable
     # conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
-    cursor.execute("insert into departamentoContable"+ "values(" + dep[0] + "," + dep[1] + ","+ dep[2] + ","+ dep[3] + ")")    
-    return 'do some magic!'
+    cursor.execute("INSERT INTO \"departamentoContable\" VALUES (" + repr(dep.id_departamento_contable) + "," + "'" + dep.nombre_departamento_contable + "'" + ","+  "'" + dep.descripcion_departamento_contable + "'" + ","+ repr(dep.id_facultad) + ")")    
+    conn.commit()
+    #conn.close()
+    return ""
 
 
 def find_departamento_contable(id_departamento_contable):
@@ -47,8 +49,9 @@ def find_departamento_contable(id_departamento_contable):
     cursor = conn.cursor()
 
     # execute our Query
-    cursor.execute("SELECT * FROM \"departamentoContable\"s")
+    cursor.execute("SELECT * FROM \"departamentoContable\" where \"departamentoContable\".\"id_departamentoContable\" = " + str(id_departamento_contable))
 
     # retrieve the records from the database
     records = cursor.fetchall()
+    conn.close()
     return json.dumps(records)
