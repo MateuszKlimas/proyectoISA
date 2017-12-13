@@ -15,38 +15,25 @@ class TestPASController(BaseTestCase):
         """
         Test case for add_salario_pas
 
-        Añade un nuevo salario de un PAS
+        Añade un nueva nomina a un pas
         """
-        salarioPAS = PAS()
-        response = self.client.open('/miAplicacionContbilidad/pas',
+        query_string = [('nominaPas', 56)]
+        response = self.client.open('/miAplicacionContbilidad/nomina_pas',
                                     method='POST',
-                                    data=json.dumps(salarioPAS),
-                                    content_type='application/json')
-        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
-
-    def test_find_pa_sby_id(self):
-        """
-        Test case for find_pa_sby_id
-
-        Devuelve el salario de un PAS a partir de su codigo de identificacion.
-        """
-        query_string = [('status', 'available')]
-        response = self.client.open('/miAplicacionContbilidad/pas',
-                                    method='GET',
+                                    content_type='application/json',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
-    def test_update_salario_pas(self):
+    def test_find_pasby_id(self):
         """
-        Test case for update_salario_pas
+        Test case for find_pasby_id
 
-        Actualiza el salario de un PAS
+        Devuelve el salario de un pas a partir de su codigo de identificacion.
         """
-        body = PAS()
-        response = self.client.open('/miAplicacionContbilidad/pas',
-                                    method='PUT',
-                                    data=json.dumps(body),
-                                    content_type='application/json')
+        query_string = [('id_profesor', 56)]
+        response = self.client.open('/miAplicacionContbilidad/nomina_pas',
+                                    method='GET',
+                                    query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
 

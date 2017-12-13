@@ -17,11 +17,11 @@ class TestProfesoresController(BaseTestCase):
 
         Añade un nuevo salario
         """
-        salarioProfesores = Profesores()
-        response = self.client.open('/miAplicacionContbilidad/profesores',
+        query_string = [('nominaProf', 56)]
+        response = self.client.open('/miAplicacionContbilidad/nomina_profesores',
                                     method='POST',
-                                    data=json.dumps(salarioProfesores),
-                                    content_type='application/json')
+                                    content_type='application/json',
+                                    query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_find_profesorby_id(self):
@@ -30,23 +30,10 @@ class TestProfesoresController(BaseTestCase):
 
         Devuelve el salario de un profesor a partir de su codigo de identificacion.
         """
-        query_string = [('status', 'available')]
-        response = self.client.open('/miAplicacionContbilidad/profesores',
+        query_string = [('id_profesor', 56)]
+        response = self.client.open('/miAplicacionContbilidad/nomina_profesores',
                                     method='GET',
                                     query_string=query_string)
-        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
-
-    def test_update_salario(self):
-        """
-        Test case for update_salario
-
-        Actualiza el salario de un docente
-        """
-        body = Profesores()
-        response = self.client.open('/miAplicacionContbilidad/profesores',
-                                    method='PUT',
-                                    data=json.dumps(body),
-                                    content_type='application/json')
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
 
