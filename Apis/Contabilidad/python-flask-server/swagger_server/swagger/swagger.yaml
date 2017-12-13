@@ -1,0 +1,387 @@
+---
+swagger: "2.0"
+info:
+  description: "API para la gestion de la contabilidad de la universidad, profesores\
+    \ y alumnos, ademas de los salrios, precios de las instalciones, matriulas, etc."
+  version: "1.0.0"
+  title: "API para la gestion de la contabilidad."
+host: "localhost:8080"
+basePath: "/miAplicacionContbilidad"
+tags:
+- name: "Departamento de contabilidad"
+  description: "Operaciones sobre contabilidad"
+schemes:
+- "https"
+paths:
+  /nomina_profesores:
+    get:
+      tags:
+      - "Profesores"
+      summary: "Devuelve el salario de un profesor a partir de su codigo de identificacion."
+      description: "Devuelve el salario de un profesor a partir de su codigo de identificacion."
+      operationId: "find_profesorby_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_profesor"
+        in: "query"
+        description: "id del profesor a buscar su salario"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operacion de busqueda realizada con exito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Profesores"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.profesores_controller"
+    post:
+      tags:
+      - "Profesores"
+      summary: "Añade un nuevo salario"
+      description: "Añades un nuevo salario a un profesor, pensado para ocasiones\
+        \ puntuales en los que haya que añadir un nuevo salrio."
+      operationId: "add_salario"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nominaProf"
+        in: "query"
+        description: "El salario que se va a añadir"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Nueva nomina introducido correctamente"
+        405:
+          description: "Error al introducir el nuevo salario"
+      x-swagger-router-controller: "swagger_server.controllers.profesores_controller"
+  /nomina_pas:
+    get:
+      tags:
+      - "PAS"
+      summary: "Devuelve el salario de un pas a partir de su codigo de identificacion."
+      description: "Devuelve el salario de un pas a partir de su codigo de identificacion."
+      operationId: "find_pasby_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_profesor"
+        in: "query"
+        description: "id del profesor a buscar su salario"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operacion de busqueda realizada con exito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PAS"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
+    post:
+      tags:
+      - "PAS"
+      summary: "Añade un nueva nomina a un pas"
+      description: "Añades un nuevo salario a un pas."
+      operationId: "add_salario_pas"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nominaPas"
+        in: "query"
+        description: "El salario que se va a añadir"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Nueva nomina introducido correctamente"
+        405:
+          description: "Error al introducir el nuevo salario"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
+  /nomina_contable:
+    get:
+      tags:
+      - "Contable"
+      summary: "Devuelve el salario de un contable a partir de su codigo de identificacion."
+      description: "Devuelve el salario de un contable a partir de su codigo de identificacion."
+      operationId: "find_contableby_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_contable"
+        in: "query"
+        description: "id del contable a buscar su salario"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operacion de busqueda realizada con exito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/NominaContable"
+        400:
+          description: "Error al realizar la operacion de busqueda"
+      x-swagger-router-controller: "swagger_server.controllers.contable_controller"
+    post:
+      tags:
+      - "Contable"
+      summary: "Añade un nueva nomina a un pas"
+      description: "Añades un nuevo salario a un contable."
+      operationId: "add_salario_contable"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nominaContable"
+        in: "query"
+        description: "El salario que se va a añadir"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Nueva nomina introducido correctamente"
+        405:
+          description: "Error al introducir el nuevo salario"
+      x-swagger-router-controller: "swagger_server.controllers.contable_controller"
+  /contable:
+    get:
+      tags:
+      - "Contable"
+      summary: "Devuelve el salario de un contable a partir de su codigo de identificacion."
+      description: "Devuelve el salario de un contable a partir de su codigo de identificacion."
+      operationId: "find_contableby_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_contable"
+        in: "query"
+        description: "id del contable a buscar su salario"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operacion de busqueda de contable realizada con exito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Contable"
+        400:
+          description: "Error al buscar el contable"
+      x-swagger-router-controller: "swagger_server.controllers.contable_controller"
+    post:
+      tags:
+      - "Contable"
+      summary: "Añade un nuevo contable"
+      description: "Añades un nuevo contable."
+      operationId: "add_contable"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "contable"
+        description: "Se va añadir un nuevo contable"
+        required: true
+        schema:
+          $ref: "#/definitions/Contable"
+      responses:
+        200:
+          description: "Nuevo contable añadido correctamente"
+        405:
+          description: "Error al introducir el nuevo contable"
+      x-swagger-router-controller: "swagger_server.controllers.contable_controller"
+  /matricula:
+    get:
+      tags:
+      - "Alumnos"
+      summary: "Devuelve el ingreso de matricula de un alumno"
+      description: "Devuelve el ingreso de matricula de un alumno"
+      operationId: "find_matricula"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno a buscar su ingreso"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operacion de busqueda de alumno realizada con exito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Alumno"
+        400:
+          description: "Error al buscar el alumno"
+      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
+    post:
+      tags:
+      - "Alumnos"
+      summary: "Añade un nuevo ingreso de matricula"
+      description: "Añade un nuevo ingreso de matricula"
+      operationId: "add_matricula"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "contable"
+        description: "Se va añadir un nuevo ingreso de matricula"
+        required: true
+        schema:
+          $ref: "#/definitions/Alumno"
+      responses:
+        200:
+          description: "Nuevo ingreso de matricula correcto"
+        405:
+          description: "Error al introducir el nuevo ingreso de matricula"
+      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
+  /departamento_contable:
+    get:
+      tags:
+      - "Departamento contable"
+      summary: "Devuelve el departamento contable"
+      description: "Devuelve el departamento contable"
+      operationId: "find_departamento_contable"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_departamento_contable"
+        in: "query"
+        description: "id del departamento contable"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Operacion de busqueda de departamento contable realizada con\
+            \ exito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/DepartamentoContable"
+        400:
+          description: "Error al buscar el departamento contable"
+      x-swagger-router-controller: "swagger_server.controllers.departamento contable_controller"
+    post:
+      tags:
+      - "Departamento contable"
+      summary: "Añade un nuevo departamento contable"
+      description: "Añade un nuevo ingreso de matricula"
+      operationId: "add_departamento_contable"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "departamento_contable"
+        description: "Se va añadir un nuevo departamento contable"
+        required: true
+        schema:
+          $ref: "#/definitions/DepartamentoContable"
+      responses:
+        200:
+          description: "Nuevo ingreso de departamento contable correcto"
+        405:
+          description: "Error al introducir el nuevo departamento contable"
+      x-swagger-router-controller: "swagger_server.controllers.departamento contable_controller"
+definitions:
+  Profesores:
+    type: "object"
+    properties:
+      id_nomindaProfesor:
+        type: "integer"
+      importeNominaProfesor:
+        type: "integer"
+      pagoNominaProfesorRealizado:
+        type: "boolean"
+      id_departamentoContable:
+        type: "integer"
+      id_profesor:
+        type: "integer"
+  PAS:
+    type: "object"
+    properties:
+      id_nomindaPAS:
+        type: "integer"
+      importeNominaPAS:
+        type: "integer"
+      pagoNominaPASRealizado:
+        type: "boolean"
+      id_departamentoContable:
+        type: "integer"
+      id_pas:
+        type: "integer"
+  Contable:
+    type: "object"
+    properties:
+      id_contable:
+        type: "integer"
+      puestoContable:
+        type: "string"
+      dniContable:
+        type: "string"
+      nombreContable:
+        type: "string"
+      apellidosContable:
+        type: "string"
+      fechaIncorporacionContable:
+        type: "string"
+      direccionContable:
+        type: "string"
+      telefonoContable:
+        type: "string"
+      id_departamentoContable:
+        type: "integer"
+  NominaContable:
+    type: "object"
+    properties:
+      id_nomindaContable:
+        type: "integer"
+      importeNominaContable:
+        type: "integer"
+      pagoNominaContableRealizado:
+        type: "boolean"
+      id_departamentoContable:
+        type: "integer"
+      id_contable:
+        type: "integer"
+  DepartamentoContable:
+    type: "object"
+    properties:
+      id_departamentoContable:
+        type: "integer"
+      nombreDepartamentoContable:
+        type: "string"
+      descripcionDepartamentoContable:
+        type: "string"
+      id_facultad:
+        type: "integer"
+  Alumno:
+    type: "object"
+    properties:
+      id_PagoMatriculaAlumno:
+        type: "integer"
+      importeMatriculaAlumno:
+        type: "integer"
+      pagoMatriculaAlumnoRealizado:
+        type: "boolean"
+      id_departamentoContable:
+        type: "integer"
+      id_alumno:
+        type: "integer"
