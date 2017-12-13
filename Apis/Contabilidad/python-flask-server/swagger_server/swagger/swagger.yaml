@@ -114,7 +114,7 @@ paths:
       - "Contable"
       summary: "Devuelve el salario de un contable a partir de su codigo de identificacion."
       description: "Devuelve el salario de un contable a partir de su codigo de identificacion."
-      operationId: "find_contableby_id"
+      operationId: "find_nomina_contableby_id"
       produces:
       - "application/json"
       parameters:

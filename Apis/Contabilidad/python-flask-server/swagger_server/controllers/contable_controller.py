@@ -40,18 +40,18 @@ def find_contableby_id(id_contable):
     :param id_contable: id del contable a buscar su salario
     :type id_contable: int
 
-    :rtype: List[NominaContable]
+    :rtype: List[Contable]
     """
     return 'do some magic!'
 
 
-def find_contableby_id_0(id_contable):
+def find_nomina_contableby_id(id_contable):
     """
     Devuelve el salario de un contable a partir de su codigo de identificacion.
     Devuelve el salario de un contable a partir de su codigo de identificacion.
     :param id_contable: id del contable a buscar su salario
     :type id_contable: int
 
-    :rtype: List[Contable]
+    :rtype: List[NominaContable]
     """
     return 'do some magic!'

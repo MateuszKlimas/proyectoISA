@@ -45,19 +45,19 @@ class TestContableController(BaseTestCase):
         Devuelve el salario de un contable a partir de su codigo de identificacion.
         """
         query_string = [('id_contable', 56)]
-        response = self.client.open('/miAplicacionContbilidad/nomina_contable',
+        response = self.client.open('/miAplicacionContbilidad/contable',
                                     method='GET',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
-    def test_find_contableby_id_0(self):
+    def test_find_nomina_contableby_id(self):
         """
-        Test case for find_contableby_id_0
+        Test case for find_nomina_contableby_id
 
         Devuelve el salario de un contable a partir de su codigo de identificacion.
         """
         query_string = [('id_contable', 56)]
-        response = self.client.open('/miAplicacionContbilidad/contable',
+        response = self.client.open('/miAplicacionContbilidad/nomina_contable',
                                     method='GET',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
