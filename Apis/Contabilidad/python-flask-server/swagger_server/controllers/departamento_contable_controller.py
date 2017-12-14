@@ -20,7 +20,7 @@ def add_departamento_contable(departamento_contable):
     if connexion.request.is_json:
         departamento_contable = DepartamentoContable.from_dict(connexion.request.get_json())
     
-    conn_string = "host='localhost' dbname='DepartamentoContable' user='postgres' password='1234'"
+    conn_string = "host='localhost' dbname='DepartamentoContable' user='isa' password='1234'"
     # get a connection, if a connect cannot be made an exception will be raised here
     conn = psycopg2.connect(conn_string)
     dep = departamento_contable
@@ -41,7 +41,7 @@ def find_departamento_contable(id_departamento_contable):
 
     :rtype: List[DepartamentoContable]
     """
-    conn_string = "host='localhost' dbname='DepartamentoContable' user='postgres' password='1234'"
+    conn_string = "host='localhost' dbname='DepartamentoContable' user='isa' password='1234'"
     # get a connection, if a connect cannot be made an exception will be raised here
     conn = psycopg2.connect(conn_string)
 
