@@ -39,7 +39,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Universidad'
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.facultades_controller
     post:
       tags:
         - Facultades
@@ -64,7 +64,7 @@ paths:
           description: Facultad creada correctamente.
         '400':
           description: La facultad no ha podido ser creada.
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.facultades_controller
     put:
       tags:
         - Facultades
@@ -89,7 +89,7 @@ paths:
           description: Facultad actualizada correctamente.
         '400':
           description: La facultad no ha podido ser actualizada.
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.facultades_controller
     delete:
       tags:
         - Facultades
@@ -112,10 +112,10 @@ paths:
         '200':
           description: Asignatura eliminada correctamente
           schema:
-            $ref: '#/definitions/Asignatura'
+            $ref: '#/definitions/Universidad'
         '404':
           description: Ha habido un problema al eliminar la asignatura
-      x-swagger-router-controller: swagger_server.controllers.asignaturas_controller
+      x-swagger-router-controller: swagger_server.controllers.facultades_controller
   '/facultad/{codUni}':
     get:
       tags:
@@ -136,7 +136,7 @@ paths:
             $ref: '#/definitions/Universidad'
         '404':
           description: La universidad no existe.
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.facultades_controller
   /grado:
     get:
       tags:
@@ -164,8 +164,8 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Universidad'
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+              $ref: '#/definitions/Grado'
+      x-swagger-router-controller: swagger_server.controllers.grados_controller
     post:
       tags:
         - Grados
@@ -190,7 +190,7 @@ paths:
           description: Grado creado correctamente.
         '404':
           description: El grado no ha podido ser creado.
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.grados_controller
     put:
       tags:
         - Grados
@@ -215,7 +215,7 @@ paths:
           description: Facultad actualizada correctamente.
         '400':
           description: La facultad no ha podido ser actualizada.
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.grados_controller
     delete:
       tags:
         - Grados
@@ -238,7 +238,7 @@ paths:
             $ref: '#/definitions/Grado'
         '404':
           description: Ha habido un problema al eliminar el grado.
-      x-swagger-router-controller: swagger_server.controllers.asignaturas_controller
+      x-swagger-router-controller: swagger_server.controllers.grados_controller
   '/grado/{codGrado}':
     get:
       tags:
@@ -266,7 +266,7 @@ paths:
             $ref: '#/definitions/Grado'
         '404':
           description: Ha habido un problema al obtener el grado
-      x-swagger-router-controller: swagger_server.controllers.usuarios_controller
+      x-swagger-router-controller: swagger_server.controllers.grados_controller
   /asignatura:
     get:
       tags:
@@ -432,7 +432,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/MedioFisicoCentro'
-      x-swagger-router-controller: swagger_server.controllers.medioFisico_controller
+      x-swagger-router-controller: swagger_server.controllers.medio_fisico_controller
     post:
       tags:
         - MedioFisico
@@ -457,7 +457,7 @@ paths:
           description: La asignatura se ha creado de manera correcta.
         '404':
           description: No se ha podido introducir la asignatura.
-      x-swagger-router-controller: swagger_server.controllers.medioFisico_controller
+      x-swagger-router-controller: swagger_server.controllers.medio_fisico_controller
     put:
       tags:
         - MedioFisico
@@ -484,7 +484,7 @@ paths:
             $ref: '#/definitions/MedioFisicoCentro'
         '404':
           description: Ha habido un problema al actualizar el medio
-      x-swagger-router-controller: swagger_server.controllers.medioFisico_controller
+      x-swagger-router-controller: swagger_server.controllers.medio_fisico_controller
     delete:
       tags:
         - MedioFisico
@@ -510,7 +510,7 @@ paths:
             $ref: '#/definitions/MedioFisicoCentro'
         '404':
           description: Ha habido un problema al eliminar la asignatura
-      x-swagger-router-controller: swagger_server.controllers.medioFisico_controller
+      x-swagger-router-controller: swagger_server.controllers.medio_fisico_controller
   '/MedioFisico/{codMedio}':
     get:
       tags:
@@ -538,7 +538,7 @@ paths:
             $ref: '#/definitions/MedioFisicoCentro'
         '404':
           description: Ha habido un problema al obtener el medio
-      x-swagger-router-controller: swagger_server.controllers.medioFisico_controller
+      x-swagger-router-controller: swagger_server.controllers.medio_fisico_controller
   /Reserva:
     get:
       tags:

@@ -6,15 +6,17 @@ from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
 
 
-def add_salario(nominaProf):
+def add_salario(salario_contable):
     """
     Añade un nuevo salario
     Añades un nuevo salario a un profesor, pensado para ocasiones puntuales en los que haya que añadir un nuevo salrio.
-    :param nominaProf: El salario que se va a añadir
-    :type nominaProf: int
+    :param salario_contable: Se va añadir un nuevo salario de un contable
+    :type salario_contable: dict | bytes
 
     :rtype: None
     """
+    if connexion.request.is_json:
+        salario_contable = Profesores.from_dict(connexion.request.get_json())
     return 'do some magic!'
 
 

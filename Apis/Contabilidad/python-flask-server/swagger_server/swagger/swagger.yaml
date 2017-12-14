@@ -50,11 +50,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nominaProf"
-        in: "query"
-        description: "El salario que se va a añadir"
+      - in: "body"
+        name: "salario_contable"
+        description: "Se va añadir un nuevo salario de un contable"
         required: true
-        type: "integer"
+        schema:
+          $ref: "#/definitions/Profesores"
       responses:
         200:
           description: "Nueva nomina introducido correctamente"
@@ -71,9 +72,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "id_profesor"
+      - name: "id_pas"
         in: "query"
-        description: "id del profesor a buscar su salario"
+        description: "id del pas a buscar su salario"
         required: true
         type: "integer"
       responses:
@@ -97,11 +98,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nominaPas"
-        in: "query"
-        description: "El salario que se va a añadir"
+      - in: "body"
+        name: "salario_pas"
+        description: "Se va añadir un nuevo salario de un pas"
         required: true
-        type: "integer"
+        schema:
+          $ref: "#/definitions/PAS"
       responses:
         200:
           description: "Nueva nomina introducido correctamente"
@@ -144,11 +146,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "nominaContable"
-        in: "query"
-        description: "El salario que se va a añadir"
+      - in: "body"
+        name: "salario_contable"
+        description: "Se va añadir un nuevo salario de un contable"
         required: true
-        type: "integer"
+        schema:
+          $ref: "#/definitions/NominaContable"
       responses:
         200:
           description: "Nueva nomina introducido correctamente"
@@ -353,6 +356,8 @@ definitions:
     properties:
       id_nomindaContable:
         type: "integer"
+      fechaPagoNomina:
+        type: "string"
       importeNominaContable:
         type: "integer"
       pagoNominaContableRealizado:
