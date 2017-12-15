@@ -1,0 +1,156 @@
+swagger: '2.0'
+info:
+  description: API para gestionar los datos del personal de administracion y servicios
+  version: 0.0.1
+  title: API para Personal de Aministracion y Servicios
+host: 'localhost:8080'
+basePath: /Pas
+tags:
+  - name: Personal de Administración y Servicios
+    description: Operaciones fundamentales
+  - name: Departamento
+    description: Operaciones fundamentales
+schemes:
+  - https
+paths:
+  '/departamento/{idDep}':
+    get:
+      tags:
+        - Departamento
+      summary: Obtener un departamento en concreto
+      description: Devolver un departamento a partir de su identificador
+      operationId: getDepartamento
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: idDep
+          in: path
+          description: Identificador del Departamento
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Operación correcta
+          schema:
+            $ref: '#/definitions/DepartamentoPAS'
+        '404':
+          description: El departamento no existe
+      x-swagger-router-controller: swagger_server.controllers.departamentos_controller
+  /departamento:
+    post:
+      tags:
+        - Departamento
+      summary: Crear un departamento
+      description: Añadir un departamento a la lista de departamentos
+      operationId: crearDepartamento
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: departamento
+          description: El departamento que se va a a añadir
+          required: true
+          schema:
+            $ref: '#/definitions/DepartamentoPAS'
+      responses:
+        '200':
+          description: Departamento aceptado
+        '400':
+          description: Departamento rechazado
+      x-swagger-router-controller: swagger_server.controllers.departamentos_controller
+  '/PAS/{idPas}':
+    get:
+      tags:
+        - Personal de Administración y Servicios
+      summary: Obtener un Personal de Administración y Servicios en concreto
+      description: Devolver un personal a partir de su identificador
+      operationId: getPas
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: idPas
+          in: path
+          description: Identificador del Personal
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Operación correcta
+          schema:
+            $ref: '#/definitions/pas'
+        '404':
+          description: El personal no existe
+      x-swagger-router-controller: swagger_server.controllers.pas_controller
+    post:
+      tags:
+        - Personal de Administración y Servicios
+      summary: Crear un personal
+      description: Añadir un personal a la lista de personal de administración y servicios
+      operationId: crearPas
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: pas
+          description: El personal se va a añadir
+          required: true
+          schema:
+            $ref: '#/definitions/pas'
+      responses:
+        '200':
+          description: Personal aceptado
+        '404':
+          description: Personal rechazado
+      x-swagger-router-controller: swagger_server.controller.pas_controller
+definitions:
+  pas:
+    type: object
+    properties:
+      idPas:
+        type: integer
+      categoriaPas:
+        type: string
+      puestoPas:
+        type: string
+      dniPas:
+        type: string
+      nombrePas:
+        type: string
+      apellidosPas:
+        type: string
+      fechaIncorporacionPas:
+        type: string
+        format: date
+      direccionPas:
+        type: string
+      telefonoPas:
+        type: string
+      idDep:
+        type: integer
+  DepartamentoPAS:
+    type: object
+    properties:
+      idDep:
+        type: integer
+      nombreDep:
+        type: string
+      descripcionDep:
+        type: string
+      idFacultad:
+        type: integer
