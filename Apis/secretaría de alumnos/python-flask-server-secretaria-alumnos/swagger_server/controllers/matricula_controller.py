@@ -4,9 +4,12 @@ from datetime import date, datetime
 from typing import List, Dict
 from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
+import psycopg2
+import json
+conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
 
 
-def realizar_automatricula(id_usuario, asignaturas=None):
+def realizar_automatricula(id_usuario, asignaturas):
     """
     Automatricula
     Permite a un alumno realizar su automatricula
@@ -17,6 +20,22 @@ def realizar_automatricula(id_usuario, asignaturas=None):
 
     :rtype: None
     """
-    if connexion.request.is_json:
-        asignaturas = [AsignaturaMatricula.from_dict(d) for d in connexion.request.get_json()]
-    return 'do some magic!'
+ 
+	# get a connection, if a connect cannot be made an exception will be raised here
+    conn = psycopg2.connect(conn_string)
+ 
+	# conn.cursor will return a cursor object, you can use this cursor to perform queries
+    cursor = conn.cursor()
+ 
+	# execute our Query
+    for i in asignaturas:
+        dato = i['codigo_asignatura']
+        print(dato)
+        cursor.execute("INSERT INTO matriculacion VALUES (1,0,0,0,false," + str(id_usuario) + "," + str(dato) + ")")
+    cursor.execute("SELECT * from matriculacion")
+    records = json.dumps(cursor.fetchall())
+    conn.commit()
+
+    return(records)
+    
+    
