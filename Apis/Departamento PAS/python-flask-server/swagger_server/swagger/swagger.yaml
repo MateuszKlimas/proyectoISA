@@ -1,0 +1,137 @@
+---
+swagger: "2.0"
+info:
+  description: "API para la gestion del personal de administracion y servicios"
+  version: "1.0.0"
+  title: "API personal de administracion y servicios"
+host: "localhost:5333"
+basePath: "/Pas"
+tags:
+- name: "Departamento PAS"
+  description: "Operaciones sobre los departamentos"
+- name: "Personal"
+  description: "Operaciones sobre el personal"
+schemes:
+- "https"
+paths:
+  /departamento:
+    get:
+      tags:
+      - "Departamento PAS"
+      summary: "Mostrar un deparatamento en concreto"
+      description: "Buscar un departamento dentro de la lista de departamentos del\
+        \ personal"
+      operationId: "busqueda_departamento_pas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "idDepartamento"
+        in: "query"
+        description: "Identificador del Departamento del Personal"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Departamento encontrado"
+          schema:
+            $ref: "#/definitions/DepartamentoPas"
+        404:
+          description: "Error en la busqueda del Departamento"
+      x-swagger-router-controller: "swagger_server.controllers.departamentoPas_controller"
+    post:
+      tags:
+      - "Departamento PAS"
+      summary: "Añadir un nuevo departamento"
+      description: "Insertar un nuevo departamento en  lista de departamentos del\
+        \ personal"
+      operationId: "insertar_departamento_pas"
+      parameters:
+      - in: "body"
+        name: "departamento"
+        required: true
+        schema:
+          $ref: "#/definitions/DepartamentoPas"
+      responses:
+        200:
+          description: "Proceso completado"
+        404:
+          description: "Error en la creacion"
+      x-swagger-router-controller: "swagger_server.controllers.departamentoPas_controller"
+  /pas:
+    get:
+      tags:
+      - "Personal"
+      summary: "Mostar un personal en concreto"
+      description: "Buscar un personal de administracion y servicios dentro de la\
+        \ lista del personal"
+      operationId: "busqueda_pas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "idPas"
+        in: "query"
+        description: "Identificador del Personal"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Personal encontrado"
+          schema:
+            $ref: "#/definitions/Pas"
+        400:
+          description: "Error en la buqueda del Personal"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
+    post:
+      tags:
+      - "Personal"
+      summary: "Añadir un nuevo personal"
+      description: "Insertar un nuevo personal en  la lista del personal de administracion\
+        \  y servicios"
+      operationId: "insertar_pas"
+      parameters:
+      - in: "body"
+        name: "pas"
+        required: true
+        schema:
+          $ref: "#/definitions/Pas"
+      responses:
+        200:
+          description: "Proceso completado"
+        404:
+          description: "Error en la creacion"
+      x-swagger-router-controller: "swagger_server.controllers.pas_controller"
+definitions:
+  DepartamentoPas:
+    type: "object"
+    properties:
+      idDepartamento:
+        type: "integer"
+      nombre:
+        type: "string"
+      descripcion:
+        type: "string"
+      idFacultad:
+        type: "integer"
+  Pas:
+    type: "object"
+    properties:
+      idPas:
+        type: "integer"
+      categoria:
+        type: "string"
+      puesto:
+        type: "string"
+      dni:
+        type: "string"
+      nombre:
+        type: "string"
+      apellidos:
+        type: "string"
+      fechaIncorporacion:
+        type: "string"
+      direccion:
+        type: "string"
+      telefono:
+        type: "string"
+      idDepartamento:
+        type: "integer"
