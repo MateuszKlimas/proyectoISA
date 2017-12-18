@@ -35,13 +35,26 @@ def asignatura_id_asignatura_get(idAsignatura):
     query = "SELECT * FROM \"grado_asignatura\" WHERE id_asignatura="+str(idAsignatura)+";"
     cursor.execute(query)
     records = cursor.fetchall()
-    cadena = cadena + records
+    query = "SELECT * FROM \"asignatura\" WHERE id_asignatura="+str(idAsignatura)+";"
+    cursor.execute(query)
+    records2 = cursor.fetchall()
+    query = "SELECT * FROM \"grado\" WHERE id_grado="+str(records[0][4])+";"
+    cursor.execute(query)
+    records3 = cursor.fetchall()
+    json1 = {
+        "idAsignatura" : records[0][5],
+        "idGrado" : records[0][4],
+        "creditosAsignaturas" : records[0][1],
+        "turnoAsignatura" : records[0][3],
+        "nombreAsignatura" : records2[0][1],
+        "nombreGrado" : records3[0][1]
+    }
     conn.close()
 	# print out the records using pretty print
 	# note that the NAMES of the columns are not shown, instead just indexes.
 	# for most people this isn't very useful so we'll show you how to return
 	# columns as a dictionary (hash) in the next example.
-    return json.dumps(records)
+    return json1
 
 def get_asignaturas(tamanoPagina, numeroPaginas):
     """
