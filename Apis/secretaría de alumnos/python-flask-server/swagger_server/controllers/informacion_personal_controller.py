@@ -1,4 +1,9 @@
 import connexion
+
+import psycopg2
+import sys
+import pprint
+import json
 from swagger_server.models.alumno import Alumno
 from swagger_server.models.creditos import Creditos
 from swagger_server.models.nota import Nota
@@ -19,7 +24,29 @@ def consultar_creditos_reconocidos(id_alumno):
 
     :rtype: List[Creditos]
     """
-    return 'do some magic!'
+    retorno=[]
+    conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
+    
+    conn = psycopg2.connect(conn_string)#Nos conectamos 
+ 
+    cursor = conn.cursor()
+ 
+    cursor.execute("SELECT matriculacion.\"id_gradoAsignatura\" FROM matriculacion WHERE id_alumno="+id_alumno+" AND aprobado=True")
+ 
+    records =cursor.fetchall()
+    
+    
+    """for i in range(len(records)): 
+        direccion= ('http://localhost:5003/Facultad/asignatura/'+ records[i][0])
+        solicitud = requests.get(direccion)
+        retorno.add(solicitud)
+
+
+    records2=json.dumps(retorno)"""
+
+    return(records)
+
+    
 
 
 def consultar_info(id_alumno):
@@ -31,7 +58,19 @@ def consultar_info(id_alumno):
 
     :rtype: Alumno
     """
-    return 'do some magic!'
+    conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
+    
+ 
+    conn = psycopg2.connect(conn_string)#Nos conectamos 
+ 
+    cursor = conn.cursor()
+ 
+    cursor.execute("SELECT * FROM alumno WHERE id_alumno="+id_alumno)
+ 
+	# retrieve the records from the database
+    records = json.dumps(cursor.fetchall())
+
+    return(records)
 
 
 def consultar_notas(id_alumno):
@@ -43,7 +82,22 @@ def consultar_notas(id_alumno):
 
     :rtype: List[Nota]
     """
-    return 'do some magic!'
+    conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
+    
+ 
+    conn = psycopg2.connect(conn_string)#Nos conectamos 
+ 
+    cursor = conn.cursor()
+ 
+    cursor.execute("SELECT matriculacion.aprobado, matriculacion.\"id_gradoAsignatura\",matriculacion.\"numConvocatoria\",matriculacion.\"notaAlumno\" FROM matriculacion WHERE id_alumno="+id_alumno)
+ 
+	# retrieve the records from the database
+    records = json.dumps(cursor.fetchall())
+
+    return(records)
+
+    
+
 
 
 def consultar_pagos(id_alumno):
@@ -55,7 +109,8 @@ def consultar_pagos(id_alumno):
 
     :rtype: ResumenPagos
     """
-    return 'do some magic!'
+    #Acceder a la api que me de la informacion economica
+    return 'Falta realizar api de contabilidad Alumnos'
 
 
 def find_pago(id_usuario, mes):
@@ -66,7 +121,9 @@ def find_pago(id_usuario, mes):
     :type id_usuario: str
     :param mes: mes correspondiente al pago buscado
     :type mes: int
+    
 
     :rtype: Pago
     """
-    return 'do some magic!'
+    #Acceder a la api que me de esta informacion economica
+    return 'Falta realizar api de contabilidad Alumnos'
