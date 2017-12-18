@@ -1,4 +1,8 @@
 import connexion
+import psycopg2
+import sys
+import pprint
+import json
 from swagger_server.models.profesores import Profesores
 from datetime import date, datetime
 from typing import List, Dict
@@ -15,9 +19,22 @@ def add_salario(salario_contable):
 
     :rtype: None
     """
+    fecha="2017-12-12"
     if connexion.request.is_json:
         salario_contable = Profesores.from_dict(connexion.request.get_json())
-    return 'do some magic!'
+    conn_string = "host='localhost' dbname='DepartamentoContable' user='ISA' password='1234'"
+    
+    conn = psycopg2.connect(conn_string)#Nos conectamos 
+ 
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO \"nominaProfesor\" VALUES (" + repr(salario_contable.id_nominda_profesor) +
+                   "," + "'" + fecha + "'" + ","+ repr(salario_contable.importe_nomina_profesor)
+                   + ","+ repr(salario_contable.pago_nomina_profesor_realizado) + ","+  repr(salario_contable.id_departamento_contable)
+                   + ","+ repr(salario_contable.id_profesor) + ")")
+    conn.commit()
+
+    return 'Todo correcto'
 
 
 def find_profesorby_id(id_profesor):
@@ -29,4 +46,22 @@ def find_profesorby_id(id_profesor):
 
     :rtype: List[Profesores]
     """
-    return 'do some magic!'
+    conn_string = "host='localhost' dbname='DepartamentoContable' user='ISA' password='1234'"
+    
+    conn = psycopg2.connect(conn_string)#Nos conectamos 
+ 
+    cursor = conn.cursor()
+ 
+    cursor.execute("SELECT \"nominaProfesor\".\"importeNominaProfesor\" FROM \"nominaProfesor\" WHERE id_profesor="+str(id_profesor))
+ 
+    # retrieve the records from the database
+    records = json.dumps(cursor.fetchall())
+    
+
+    return records
+
+
+
+
+
+
