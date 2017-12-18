@@ -121,5 +121,5 @@ def update_facultad(universidad):
     cursor.execute("UPDATE public.centro set id_centro =" +str(universidad.cod_uni)+ ",\"nombreCentro\" ="+"'"+universidad.name+"'"+
                    ",\"direccionCentro\" ="+"'"+ universidad.dir+"'"+"WHERE id_centro= "+str(universidad.cod_uni))
     conn.commit()
-    return 'Cambio realizdo'
+    return 'Cambio bien realizdo'
 
