@@ -362,7 +362,7 @@ paths:
         - application/xml
         - application/json
       parameters:
-        - name: Asignatura
+        - name: asignatura
           in: body
           description: Codigo de la asignatura
           required: true
