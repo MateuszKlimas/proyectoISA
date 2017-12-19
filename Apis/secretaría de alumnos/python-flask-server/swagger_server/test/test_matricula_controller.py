@@ -11,6 +11,34 @@ from flask import json
 class TestMatriculaController(BaseTestCase):
     """ MatriculaController integration test stubs """
 
+    def test_cambiar_matricula(self):
+        """
+        Test case for cambiar_matricula
+
+        Cambios en matricula
+        """
+        datos = AsignaturaMatricula()
+        query_string = [('id_usuario', 'id_usuario_example')]
+        response = self.client.open('/secretaria-alumnos/cambiarmatricula',
+                                    method='PUT',
+                                    data=json.dumps(datos),
+                                    content_type='application/json',
+                                    query_string=query_string)
+        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
+
+    def test_get_matriculas(self):
+        """
+        Test case for get_matriculas
+
+        Devuelve las matriculas de un alumno
+        """
+        query_string = [('id_usuario', 'id_usuario_example')]
+        response = self.client.open('/secretaria-alumnos/getMatriculas',
+                                    method='GET',
+                                    content_type='application/json',
+                                    query_string=query_string)
+        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
+
     def test_realizar_automatricula(self):
         """
         Test case for realizar_automatricula
