@@ -4,7 +4,7 @@ info:
   description: "API De universidades"
   version: "0.0.1"
   title: "API para la gestión de facultades"
-host: "localhost:8080"
+host: "172.22.129.215:8080"
 basePath: "/Facultad"
 tags:
 - name: "Facultades"
