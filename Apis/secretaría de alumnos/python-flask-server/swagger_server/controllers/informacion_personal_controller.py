@@ -17,35 +17,34 @@ from ..util import deserialize_date, deserialize_datetime
 
 def consultar_creditos_reconocidos(id_alumno):
     """
-    creditos convalidados
-    muestra una lista de los creditos convalidados del alimno asi como la asignatura a la que pertenecen
-    :param id_alumno: id del usuario
-    :type id_alumno: str
+	creditos convalidados
+	muestra una lista de los creditos convalidados del alimno asi como la asignatura a la que pertenecen
+	:param id_alumno: id del usuario
+	:type id_alumno: str
+	:rtype: List[Creditos]
+	"""
+	retorno=[]
+	conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
+	conn = psycopg2.connect(conn_string)#Nos conectamos 
+	cursor = conn.cursor()
+	cursor.execute("SELECT matriculacion.\"id_gradoAsignatura\" FROM matriculacion WHERE id_alumno="+id_alumno+" AND aprobado=True")
+	records =cursor.fetchall()
 
-    :rtype: List[Creditos]
-    """
-    retorno=[]
-    conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
-    
-    conn = psycopg2.connect(conn_string)#Nos conectamos 
- 
-    cursor = conn.cursor()
- 
-    cursor.execute("SELECT matriculacion.\"id_gradoAsignatura\" FROM matriculacion WHERE id_alumno="+id_alumno+" AND aprobado=True")
- 
-    records =cursor.fetchall()
-    
-    
-    """for i in range(len(records)): 
-        direccion= ('http://localhost:5003/Facultad/asignatura/'+ records[i][0])
-        solicitud = requests.get(direccion)
-        retorno.add(solicitud)
-
-
-    records2=json.dumps(retorno)"""
-
-    return(records)
-
+	lista_json = []
+	for row in records:
+		direccion = 'localhost::8080'
+		uri= ('http://' + direccion +  '/Facultad/asignatura/'+ row[0])
+		solicitud = requests.get(uri)
+		json_asignatura = solicitud.json()
+		json1 = {
+					"codigo_asignatura": row[0],
+					"creditos": json_asignatura['creditosAsignaturas'],
+					"nombre": json_asignatura['nombreAsignatura'],
+					"nombreGrado": json_asignatura['nombreGrado'],
+					"turnoAsignatura": json_asignatura['turnoAsignatura']
+				}
+		lista_json.append(json1)
+	return(lista_json)
     
 
 

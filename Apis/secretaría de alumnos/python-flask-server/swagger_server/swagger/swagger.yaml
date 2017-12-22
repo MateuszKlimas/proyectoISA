@@ -252,7 +252,7 @@ paths:
       parameters:
       - name: "id_usuario"
         in: "query"
-        description: "nombre del usuario"
+        description: "id del usuario"
         required: true
         type: "string"
       - in: "body"
@@ -266,7 +266,57 @@ paths:
         200:
           description: "operacion correcta"
         400:
-          description: "nombre de usuario o contraseña erroneos"
+          description: "id de usuario erroneo"
+      x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
+  /cambiarmatricula:
+    put:
+      tags:
+      - "Matricula"
+      summary: "Cambios en matricula"
+      description: "Permite la modificacion de los datos de la matricula"
+      operationId: "cambiar_matricula"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id_usuario"
+        in: "query"
+        description: "id del usuario"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "datos"
+        required: false
+        schema:
+          $ref: "#/definitions/Asignatura_Matricula"
+      responses:
+        200:
+          description: "operacion correcta"
+        400:
+          description: "id de usuario erroneo"
+      x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
+  /getMatriculas:
+    get:
+      tags:
+      - "Matricula"
+      summary: "Devuelve las matriculas de un alumno"
+      description: "Devuelve todas las matriculas realizadas por el alumno por su\
+        \ id"
+      operationId: "get_matriculas"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id_usuario"
+        in: "query"
+        description: "id del usuario"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "operacion correcta"
+        400:
+          description: "id de usuario incorrecto"
+        404:
+          description: "id de usuario no encontrado"
       x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
 definitions:
   Asignatura_Matricula:
