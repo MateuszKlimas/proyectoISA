@@ -2,9 +2,9 @@
 swagger: "2.0"
 info:
   description: "API De universidades"
-  version: "0.0.1"
+  version: "0.7.0"
   title: "API para la gestión de facultades"
-host: "172.22.129.215:8080"
+host: "localhost:8080"
 basePath: "/Facultad"
 tags:
 - name: "Facultades"
@@ -395,6 +395,34 @@ paths:
       - name: "idAsignatura"
         in: "path"
         description: "Codigo de la asignatura"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Asignatura devuelta correctamente"
+          schema:
+            $ref: "#/definitions/Asignatura"
+        404:
+          description: "Ha habido un problema al obtener el grado"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /Gradoasignatura/{idGradoAsignatura}:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Obtienes una asignatura a partir de su código de grado_asignatura"
+      description: "Devuelve un objeto del tipo asignatura con todos sus datos, a\
+        \ partir del código del grado."
+      operationId: "gradoasignatura_id_grado_asignatura_get"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "idGradoAsignatura"
+        in: "path"
+        description: "Codigo del grado_asignatura"
         required: true
         type: "integer"
       responses:

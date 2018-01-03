@@ -36,6 +36,17 @@ class TestAsignaturasController(BaseTestCase):
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
+    def test_gradoasignatura_id_grado_asignatura_get(self):
+        """
+        Test case for gradoasignatura_id_grado_asignatura_get
+
+        Obtienes una asignatura a partir de su código de grado_asignatura
+        """
+        response = self.client.open('/Facultad/Gradoasignatura/{idGradoAsignatura}'.format(idGradoAsignatura=56),
+                                    method='GET',
+                                    content_type='application/json')
+        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
+
     def test_post_asignatura(self):
         """
         Test case for post_asignatura
