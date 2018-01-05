@@ -1,36 +1,25 @@
 //
-//  AsignaturaTableViewController.swift
+//  AsTableViewController.swift
 //  Profesorado
 //
-//  Created by Flavius Stan on 3/1/18.
+//  Created by Flavius Stan on 5/1/18.
 //  Copyright © 2018 Flavius Stan. All rights reserved.
 //
 
 import UIKit
 
-class AsignaturaTableViewController: UITableViewController {
-    //Variables
-    
-    var asignaturas = [Asignatura]()
+class AsTableViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSampleAsignaturas()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AsignaturasTableViewCell")
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    private func loadSampleAsignaturas(){
-        let asignatura1 = "Matematicas"
-        let asignatura2 = "Programacion"
-        
-        let asignaturaO1 = Asignatura( asignatura: asignatura1,id : 1)
-        let asignaturaO2 = Asignatura( asignatura: asignatura2, id : 2)
-        
-        asignaturas += [asignaturaO1,asignaturaO2]
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,26 +28,24 @@ class AsignaturaTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return asignaturas.count
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "AsignaturasTableViewCell"
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AsignaturasTableViewCell else{
-            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
-        }
-        let asignatura = asignaturas[indexPath.row]
-        cell.NomAsignatura.text = asignatura.nombre
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
 
         return cell
     }
- 
+    */
 
     /*
     // Override to support conditional editing of the table view.

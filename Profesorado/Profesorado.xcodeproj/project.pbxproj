@@ -10,6 +10,10 @@
 		750ED97F1FFD33D800D73902 /* AsignaturasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED97E1FFD33D800D73902 /* AsignaturasTableViewCell.swift */; };
 		750ED9811FFD37E300D73902 /* AsignaturaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED9801FFD37E300D73902 /* AsignaturaTableViewController.swift */; };
 		750ED9831FFD392E00D73902 /* Asignatura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED9821FFD392E00D73902 /* Asignatura.swift */; };
+		752FCFA91FFF95F400DF8B9B /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752FCFA81FFF95F400DF8B9B /* LocalAuthentication.framework */; };
+		752FCFAB1FFF974B00DF8B9B /* ThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752FCFAA1FFF974B00DF8B9B /* ThirdView.swift */; };
+		752FCFAD1FFF999700DF8B9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752FCFAC1FFF999700DF8B9B /* UIKit.framework */; };
+		752FCFAF1FFF9E8C00DF8B9B /* AsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752FCFAE1FFF9E8C00DF8B9B /* AsTableViewController.swift */; };
 		755468861FF2A15D001BC8FA /* SeconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755468851FF2A15D001BC8FA /* SeconViewController.swift */; };
 		7554D4001FF2472C002803E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7554D3FF1FF2472C002803E0 /* AppDelegate.swift */; };
 		7554D4021FF2472C002803E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7554D4011FF2472C002803E0 /* ViewController.swift */; };
@@ -22,6 +26,10 @@
 		750ED97E1FFD33D800D73902 /* AsignaturasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsignaturasTableViewCell.swift; sourceTree = "<group>"; };
 		750ED9801FFD37E300D73902 /* AsignaturaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsignaturaTableViewController.swift; sourceTree = "<group>"; };
 		750ED9821FFD392E00D73902 /* Asignatura.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asignatura.swift; sourceTree = "<group>"; };
+		752FCFA81FFF95F400DF8B9B /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		752FCFAA1FFF974B00DF8B9B /* ThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdView.swift; sourceTree = "<group>"; };
+		752FCFAC1FFF999700DF8B9B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		752FCFAE1FFF9E8C00DF8B9B /* AsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsTableViewController.swift; sourceTree = "<group>"; };
 		755468851FF2A15D001BC8FA /* SeconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeconViewController.swift; sourceTree = "<group>"; };
 		7554D3FC1FF2472C002803E0 /* Profesorado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profesorado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7554D3FF1FF2472C002803E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,17 +45,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752FCFAD1FFF999700DF8B9B /* UIKit.framework in Frameworks */,
+				752FCFA91FFF95F400DF8B9B /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		752FCFA71FFF95F300DF8B9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				752FCFAC1FFF999700DF8B9B /* UIKit.framework */,
+				752FCFA81FFF95F400DF8B9B /* LocalAuthentication.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7554D3F31FF2472C002803E0 = {
 			isa = PBXGroup;
 			children = (
 				7554D3FE1FF2472C002803E0 /* Profesorado */,
 				7554D3FD1FF2472C002803E0 /* Products */,
+				752FCFA71FFF95F300DF8B9B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,9 +83,11 @@
 			isa = PBXGroup;
 			children = (
 				750ED9801FFD37E300D73902 /* AsignaturaTableViewController.swift */,
+				752FCFAE1FFF9E8C00DF8B9B /* AsTableViewController.swift */,
 				7554D3FF1FF2472C002803E0 /* AppDelegate.swift */,
 				7554D4011FF2472C002803E0 /* ViewController.swift */,
 				755468851FF2A15D001BC8FA /* SeconViewController.swift */,
+				752FCFAA1FFF974B00DF8B9B /* ThirdView.swift */,
 				7554D4031FF2472C002803E0 /* Main.storyboard */,
 				750ED97E1FFD33D800D73902 /* AsignaturasTableViewCell.swift */,
 				7554D4061FF2472C002803E0 /* Assets.xcassets */,
@@ -148,6 +170,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752FCFAB1FFF974B00DF8B9B /* ThirdView.swift in Sources */,
+				752FCFAF1FFF9E8C00DF8B9B /* AsTableViewController.swift in Sources */,
 				755468861FF2A15D001BC8FA /* SeconViewController.swift in Sources */,
 				7554D4021FF2472C002803E0 /* ViewController.swift in Sources */,
 				750ED97F1FFD33D800D73902 /* AsignaturasTableViewCell.swift in Sources */,
