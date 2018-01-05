@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750ED97F1FFD33D800D73902 /* AsignaturasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED97E1FFD33D800D73902 /* AsignaturasTableViewCell.swift */; };
+		750ED9811FFD37E300D73902 /* AsignaturaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED9801FFD37E300D73902 /* AsignaturaTableViewController.swift */; };
+		750ED9831FFD392E00D73902 /* Asignatura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED9821FFD392E00D73902 /* Asignatura.swift */; };
 		755468861FF2A15D001BC8FA /* SeconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755468851FF2A15D001BC8FA /* SeconViewController.swift */; };
 		7554D4001FF2472C002803E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7554D3FF1FF2472C002803E0 /* AppDelegate.swift */; };
 		7554D4021FF2472C002803E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7554D4011FF2472C002803E0 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		750ED97E1FFD33D800D73902 /* AsignaturasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsignaturasTableViewCell.swift; sourceTree = "<group>"; };
+		750ED9801FFD37E300D73902 /* AsignaturaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsignaturaTableViewController.swift; sourceTree = "<group>"; };
+		750ED9821FFD392E00D73902 /* Asignatura.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asignatura.swift; sourceTree = "<group>"; };
 		755468851FF2A15D001BC8FA /* SeconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeconViewController.swift; sourceTree = "<group>"; };
 		7554D3FC1FF2472C002803E0 /* Profesorado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profesorado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7554D3FF1FF2472C002803E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,13 +62,16 @@
 		7554D3FE1FF2472C002803E0 /* Profesorado */ = {
 			isa = PBXGroup;
 			children = (
+				750ED9801FFD37E300D73902 /* AsignaturaTableViewController.swift */,
 				7554D3FF1FF2472C002803E0 /* AppDelegate.swift */,
 				7554D4011FF2472C002803E0 /* ViewController.swift */,
 				755468851FF2A15D001BC8FA /* SeconViewController.swift */,
 				7554D4031FF2472C002803E0 /* Main.storyboard */,
+				750ED97E1FFD33D800D73902 /* AsignaturasTableViewCell.swift */,
 				7554D4061FF2472C002803E0 /* Assets.xcassets */,
 				7554D4081FF2472C002803E0 /* LaunchScreen.storyboard */,
 				7554D40B1FF2472C002803E0 /* Info.plist */,
+				750ED9821FFD392E00D73902 /* Asignatura.swift */,
 			);
 			path = Profesorado;
 			sourceTree = "<group>";
@@ -141,6 +150,9 @@
 			files = (
 				755468861FF2A15D001BC8FA /* SeconViewController.swift in Sources */,
 				7554D4021FF2472C002803E0 /* ViewController.swift in Sources */,
+				750ED97F1FFD33D800D73902 /* AsignaturasTableViewCell.swift in Sources */,
+				750ED9811FFD37E300D73902 /* AsignaturaTableViewController.swift in Sources */,
+				750ED9831FFD392E00D73902 /* Asignatura.swift in Sources */,
 				7554D4001FF2472C002803E0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

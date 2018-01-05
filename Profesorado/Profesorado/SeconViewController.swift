@@ -23,7 +23,9 @@ class SeconViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func Hola(_ sender: Any) {
-        Texto.text = "Espero no volverte a ver nunca más"
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ThirdView")
+        self.present(vc, animated: true, completion: nil)
     }
     
 

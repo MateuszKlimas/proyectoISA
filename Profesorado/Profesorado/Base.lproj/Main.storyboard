@@ -96,35 +96,111 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3CN-9m-wnS">
-                                <rect key="frame" x="127" y="296" width="66" height="30"/>
-                                <state key="normal" title="Púlsame">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrT-Hu-pMy">
+                                <rect key="frame" x="128" y="304" width="64" height="30"/>
+                                <state key="normal" title="Docencia">
                                     <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="Hola:" destination="Qvh-uS-7ur" eventType="touchUpInside" id="IZZ-bt-G7K"/>
+                                    <action selector="Hola:" destination="Qvh-uS-7ur" eventType="touchUpInside" id="Dyg-hH-jXc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vjT-LB-JX9" firstAttribute="top" secondItem="cQL-VS-DSh" secondAttribute="topMargin" constant="74" id="LR2-BU-g9h"/>
-                            <constraint firstItem="3CN-9m-wnS" firstAttribute="top" secondItem="vjT-LB-JX9" secondAttribute="bottom" constant="181" id="UW9-92-Hnw"/>
+                            <constraint firstItem="D1p-oC-Mpz" firstAttribute="trailing" secondItem="HrT-Hu-pMy" secondAttribute="trailing" constant="128" id="RLH-oZ-1uS"/>
+                            <constraint firstItem="HrT-Hu-pMy" firstAttribute="leading" secondItem="D1p-oC-Mpz" secondAttribute="leading" constant="128" id="Vr9-jg-OM2"/>
                             <constraint firstItem="D1p-oC-Mpz" firstAttribute="trailing" secondItem="vjT-LB-JX9" secondAttribute="trailing" constant="89" id="YOk-iU-tAu"/>
                             <constraint firstItem="vjT-LB-JX9" firstAttribute="leading" secondItem="D1p-oC-Mpz" secondAttribute="leading" constant="90" id="Zre-sI-2Xw"/>
-                            <constraint firstItem="D1p-oC-Mpz" firstAttribute="trailing" secondItem="3CN-9m-wnS" secondAttribute="trailing" constant="127" id="do4-jP-Wa5"/>
-                            <constraint firstItem="3CN-9m-wnS" firstAttribute="leading" secondItem="D1p-oC-Mpz" secondAttribute="leading" constant="127" id="s7c-18-kA5"/>
+                            <constraint firstItem="HrT-Hu-pMy" firstAttribute="top" secondItem="vjT-LB-JX9" secondAttribute="bottom" constant="189" id="l1x-9g-kIj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D1p-oC-Mpz"/>
                     </view>
                     <connections>
-                        <outlet property="Botón" destination="3CN-9m-wnS" id="Zjp-VH-eaN"/>
                         <outlet property="Texto" destination="vjT-LB-JX9" id="bax-kb-tni"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3A-y1-fRU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="826.875" y="115.14084507042254"/>
+        </scene>
+        <!--Asignatura Table View Controller-->
+        <scene sceneID="pG4-Ut-hqe">
+            <objects>
+                <viewController storyboardIdentifier="ThirdView" id="6qe-vw-SUZ" customClass="AsignaturaTableViewController" customModule="Profesorado" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0vE-FW-kUI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="10" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mx4-eW-1sM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="sectionIndexTrackingBackgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="bSK-U2-A8b" customClass="AsignaturasTableViewCell" customModule="Profesorado" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bSK-U2-A8b" id="Fgk-Zv-u6h">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asignatura" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0K-On-BFp">
+                                                    <rect key="frame" x="15" y="11" width="82.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHu-qh-bhq">
+                                                    <rect key="frame" x="202.5" y="7" width="39" height="30"/>
+                                                    <state key="normal" title="Actas">
+                                                        <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="EntrarEnActa:" destination="bSK-U2-A8b" eventType="touchUpInside" id="CNb-2m-2gP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Y0K-On-BFp" firstAttribute="leading" secondItem="Fgk-Zv-u6h" secondAttribute="leading" constant="15" id="JnS-Ku-dyU"/>
+                                                <constraint firstItem="vHu-qh-bhq" firstAttribute="top" secondItem="Fgk-Zv-u6h" secondAttribute="top" constant="7" id="Kku-bB-1Dh"/>
+                                                <constraint firstAttribute="trailing" secondItem="vHu-qh-bhq" secondAttribute="trailing" constant="78.5" id="Lss-wJ-WvK"/>
+                                                <constraint firstItem="vHu-qh-bhq" firstAttribute="leading" secondItem="Y0K-On-BFp" secondAttribute="trailing" constant="105" id="fb3-Bj-oYW"/>
+                                                <constraint firstAttribute="bottom" secondItem="vHu-qh-bhq" secondAttribute="bottom" constant="8.5" id="jwv-oA-sS8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Y0K-On-BFp" secondAttribute="bottom" constant="13.5" id="mPp-j2-s37"/>
+                                                <constraint firstItem="Y0K-On-BFp" firstAttribute="top" secondItem="Fgk-Zv-u6h" secondAttribute="top" constant="11" id="xS8-zl-rjM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="ActaAsignatura" destination="vHu-qh-bhq" id="lSN-jq-Bd1"/>
+                                            <outlet property="NomAsignatura" destination="Y0K-On-BFp" id="rdQ-rO-aCi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="trailing" secondItem="iX5-PI-Pgc" secondAttribute="trailing" id="Apm-f3-jGi"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="leading" secondItem="iX5-PI-Pgc" secondAttribute="leading" id="DcF-Ns-lor"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="trailing" secondItem="iX5-PI-Pgc" secondAttribute="trailing" id="LIN-bj-RAF"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="leading" secondItem="iX5-PI-Pgc" secondAttribute="leading" id="R2Z-Aw-vtb"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="top" secondItem="0vE-FW-kUI" secondAttribute="top" id="So4-M2-3G8"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="bottom" secondItem="iX5-PI-Pgc" secondAttribute="bottom" id="cPG-Tm-qnV"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="top" secondItem="0vE-FW-kUI" secondAttribute="top" id="f6r-no-Zs5"/>
+                            <constraint firstItem="mx4-eW-1sM" firstAttribute="bottom" secondItem="iX5-PI-Pgc" secondAttribute="bottom" id="g5a-DU-3ub"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iX5-PI-Pgc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="znl-la-Ty0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1706.25" y="121.47887323943662"/>
         </scene>
     </scenes>
 </document>
