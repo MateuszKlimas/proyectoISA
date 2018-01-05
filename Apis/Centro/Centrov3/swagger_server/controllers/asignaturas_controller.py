@@ -95,9 +95,21 @@ def get_asignaturas(tamanoPagina, numeroPaginas):
         # conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
         # execute our Query
-    query = "Select * from \"grado_asignatura\";"
+    query = "SELECT \"id_gradoAsignatura\",id_asignatura,id_grado,\"turnoAsignatura\",\"creditosAsignatura\",(SELECT \"nombreAsignatura\" FROM asignatura WHERE asignatura.id_asignatura= grado_asignatura.id_asignatura) as nombreAsignatura,(SELECT \"nombreGrado\" FROM grado WHERE grado.id_grado= grado_asignatura.id_grado) as nombreGrado FROM grado_asignatura;"
     cursor.execute(query)
     records = cursor.fetchall()
+    
+    for row in range(cursor.rowcount):
+        json1 = {
+        "nombreAsignatura" : records[row][5],
+        "nombreGrado" : records[row][6],
+        "idAsignatura" : records[row][1],
+        "idGrado" : records[row][2],
+        "idGradoAsignatura" : records[row][0],
+        "creditosAsignaturas" : records[row][4],
+        "turnoAsignatura" : records[row][3],
+        }
+        jsons.append(json1)
     conn.close()
     return jsons
 
