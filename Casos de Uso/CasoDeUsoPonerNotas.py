@@ -1,6 +1,7 @@
 import json
 import connexion
 import psycopg2
+import requests
 
 def verDocencia():
     ### Esto mostrará por pantalla las docencias disponibles para el profesor.
@@ -13,14 +14,27 @@ def verDocencia():
 
 def entrarEnAsingnatura(id_gradoAsignatura):
     ###Esta función sacará todas las matrículas con ese id de grado_asignatura
-    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
-    print ("Connecting to database\n")
-    conn = psycopg2.connect(conn_string)
-    cursor = conn.cursor()
-    query = "SELECT \"id_alumno\" FROM MATRICULACION WHERE \"id_gradoAsignatura\"="+str(id_gradoAsignatura)+";"
-    cursor.execute(query)
-	# retrieve the records from the database
-    records = cursor.fetchall()
-    for row in range(cursor.rowcount):
 
 
+
+
+    print("Hola")
+
+    ####EN ESTE METODO LLAMO A QUE ME DEVUELVA TODAS LAS MATRÍCULAS CON SU NOMBRE
+
+def ponerNota(idMatriculacion):
+    nota= input("Introduzca la nota que quiere poner a la matrícula con id "+ str(idMatriculacion)+": ")
+    headers = { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    data = { 
+        "idGradoAsignatura": 1, 
+        "idMatricula": 2, 
+        "nota": 3
+    }
+    response = requests.post('http://localhost:8080/secretaria-alumnos/Notas', headers=headers, data=json.dumps(data))
+    print(str(response))
+    ###Hago la request para ponerle la nota.
+
+ponerNota(1)
