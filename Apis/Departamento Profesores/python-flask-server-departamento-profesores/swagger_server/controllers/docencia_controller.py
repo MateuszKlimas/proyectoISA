@@ -92,7 +92,7 @@ def actualizar_docencia(docencia):
     doce = docencia
     # conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
-    cursor.execute("UPDATE \"docencia\" SET \"docencia\".\"id_docencia\" = " + repr(doce.id_docencia) + ", \"docencia\".\"id_profesor\" = " + repr(doce.id_profesor) ", \"docencia\".\"id_gradoAsignatura\" = " + repr(doce.id_gradoAsignatura) + " WHERE id_docencia = " + repr(doce.id_docencia) + ";")    
+    ###cursor.execute("UPDATE \"docencia\" SET \"docencia\".\"id_docencia\" = " + str(doce.id_docencia+ ", \"docencia\".\"id_profesor\" = " + str(doce.id_profesor) ", \"docencia\".\"id_gradoAsignatura\" = " + str(doce.id_gradoAsignatura) + " WHERE id_docencia = " + str(doce.id_docencia) + ";")
     conn.commit()
     conn.close()
     return ""
