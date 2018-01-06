@@ -34,7 +34,7 @@ def ponerNota(idMatriculacion):
         "nota": 3
     }
     response = requests.post('http://localhost:8080/secretaria-alumnos/Notas', headers=headers, data=json.dumps(data))
-    print(str(response))
+    print(str(response.content))
     ###Hago la request para ponerle la nota.
 
 ponerNota(1)
