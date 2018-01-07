@@ -1,4 +1,7 @@
 import connexion
+import psycopg2 
+import json
+import pprint
 from swagger_server.models.asignatura_matricula import AsignaturaMatricula
 from swagger_server.models.matricula_asignatura import MatriculaAsignatura
 from datetime import date, datetime
