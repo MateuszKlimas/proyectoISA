@@ -64,7 +64,7 @@ def gradoasignatura_id_grado_asignatura_get(idGradoAsignatura):
 	# conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
 	# execute our Query
-    query = "SELECT * FROM \"grado_asignatura\" WHERE \"id_gradoAsignatura\"="+str(idGradoAsignatura)+";"
+    query = "SELECT *,(SELECT \"nombreGrado\" from grado where grado_asignatura.id_grado=grado.id_grado) as nombregrado,(SELECT \"nombreAsignatura\" from asignatura where grado_asignatura.id_asignatura=id_asignatura) as nombreAsignatura FROM \"grado_asignatura\" WHERE \"id_gradoAsignatura\"="+str(idGradoAsignatura)+";"
     cursor.execute(query)
     records = cursor.fetchall()
     json1 = {
@@ -73,8 +73,11 @@ def gradoasignatura_id_grado_asignatura_get(idGradoAsignatura):
         "idGradoAsignatura" : records[0][0],
         "creditosAsignaturas" : records[0][1],
         "turnoAsignatura" : records[0][3],
+        "nombreGrado" : records[0][6],
+        "nombreAsignatura" : records[0][7]
     }
     return json1
+
 def get_asignaturas(tamanoPagina, numeroPaginas):
     """
     Obtiene un listado de todas las asignaturas de la Base de datos

@@ -4,7 +4,7 @@ info:
   description: "API De universidades"
   version: "0.7.0"
   title: "API para la gestión de facultades"
-host: "localhost:8080"
+host: "localhost:8082"
 basePath: "/Facultad"
 tags:
 - name: "Facultades"
@@ -428,8 +428,6 @@ paths:
       responses:
         200:
           description: "Asignatura devuelta correctamente"
-          schema:
-            $ref: "#/definitions/Asignatura"
         404:
           description: "Ha habido un problema al obtener el grado"
       x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
