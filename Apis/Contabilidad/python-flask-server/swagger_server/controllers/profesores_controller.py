@@ -71,7 +71,7 @@ def find_profesorby_id(id_profesor):
         }
         
         json_list.append(json)
-
+    conn.close()
     return json_list
 
 

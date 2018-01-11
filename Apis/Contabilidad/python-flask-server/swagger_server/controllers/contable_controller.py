@@ -74,8 +74,23 @@ def find_contableby_id(id_contable):
 
     # retrieve the records from the database
     records = cursor.fetchall()
+    
+   
+    json = {
+    'id_contable':id_contable,
+    'puesto_contable': records[0][1],
+    'dni_contable': records[0][2],
+    'nombre_contable:': records[0][3],
+    'apellidos_contable:': records[0][4],
+    'fecha_incorporacion_contable': records[0][5],
+    'direccion_contable': records[0][6],
+    'telefono_contable': records[0][7],
+    'id_departamento_contable': records[0][8],
+    
+    }
+        
     conn.close()
-    return json.dumps(str(records))
+    return json
 
 
 def find_nomina_contableby_id(id_contable):
@@ -99,5 +114,17 @@ def find_nomina_contableby_id(id_contable):
 
     # retrieve the records from the database
     records = cursor.fetchall()
+    json_list = []
+    for i in range(len(records)):
+        json = {
+        'id_nomina': records[i][0],
+        'fecha_pago_nomina': records[i][1],
+        'importe_nomina:': records[i][2],
+        'pago_nomina:': records[i][3],
+        'id_departamento_contable': records[i][4],
+        'id_contable':id_contable
+        }
+        
+        json_list.append(json)
     conn.close()
-    return json.dumps(str(records))
+    return json_list
