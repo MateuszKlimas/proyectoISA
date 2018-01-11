@@ -61,8 +61,6 @@ def find_profesorby_id(id_profesor):
     records = cursor.fetchall()
     json_list = []
     for i in range(len(records)):
-        print(records[i])
-    for i in range(len(records)):
         json = {
         'id_nomina_profesor': records[i][0],
         'fecha_pago_nomina_profesor': records[i][1],
