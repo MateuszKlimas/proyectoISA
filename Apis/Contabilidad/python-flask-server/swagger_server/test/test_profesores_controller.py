@@ -17,11 +17,11 @@ class TestProfesoresController(BaseTestCase):
 
         Añade un nuevo salario
         """
-        query_string = [('nominaProf', 56)]
+        salario_contable = Profesores()
         response = self.client.open('/miAplicacionContbilidad/nomina_profesores',
                                     method='POST',
-                                    content_type='application/json',
-                                    query_string=query_string)
+                                    data=json.dumps(salario_contable),
+                                    content_type='application/json')
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_find_profesorby_id(self):

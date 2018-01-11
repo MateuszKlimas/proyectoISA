@@ -243,7 +243,7 @@ paths:
       - "application/json"
       parameters:
       - in: "body"
-        name: "contable"
+        name: "ingreso_matricula"
         description: "Se va añadir un nuevo ingreso de matricula"
         required: true
         schema:
