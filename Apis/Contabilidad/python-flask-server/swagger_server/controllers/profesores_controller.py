@@ -19,7 +19,7 @@ def add_salario(salario_contable):
 
     :rtype: None
     """
-    fecha="2017-12-12"
+    fecha="12-12-2017"
     if connexion.request.is_json:
         salario_contable = Profesores.from_dict(connexion.request.get_json())
     conn_string = "host='localhost' dbname='DepartamentoContable' user='ISA' password='1234'"
@@ -27,11 +27,14 @@ def add_salario(salario_contable):
     conn = psycopg2.connect(conn_string)#Nos conectamos 
  
     cursor = conn.cursor()
-
-    cursor.execute("INSERT INTO \"nominaProfesor\" VALUES (" + repr(salario_contable.id_nominda_profesor) +
-                   "," + "'" + fecha + "'" + ","+ repr(salario_contable.importe_nomina_profesor)
-                   + ","+ repr(salario_contable.pago_nomina_profesor_realizado) + ","+  repr(salario_contable.id_departamento_contable)
-                   + ","+ repr(salario_contable.id_profesor) + ")")
+    cursor.execute("INSERT INTO \"nominaProfesor\" VALUES ("
+                    + repr(salario_contable.id_nominda_profesor) +","
+                    + "'" + fecha + "'" +","
+                   +  repr(salario_contable.importe_nomina_profesor) + ","
+                   + repr(salario_contable.pago_nomina_profesor_realizado) + ","
+                   +  repr(salario_contable.id_departamento_contable)+","
+                   + repr(salario_contable.id_profesor)+")"
+                   )
     conn.commit()
 
     return 'Todo correcto'
@@ -52,13 +55,26 @@ def find_profesorby_id(id_profesor):
  
     cursor = conn.cursor()
  
-    cursor.execute("SELECT \"nominaProfesor\".\"importeNominaProfesor\" FROM \"nominaProfesor\" WHERE id_profesor="+str(id_profesor))
+    cursor.execute("SELECT * FROM \"nominaProfesor\" WHERE id_profesor="+str(id_profesor))
  
     # retrieve the records from the database
-    records = json.dumps(cursor.fetchall())
-    
+    records = cursor.fetchall()
+    json_list = []
+    for i in range(len(records)):
+        print(records[i])
+    for i in range(len(records)):
+        json = {
+        'id_nomina_profesor': records[i][0],
+        'fecha_pago_nomina_profesor': records[i][1],
+        'importe_nomina_profesor:': records[i][2],
+        'pago_nomina:': records[i][3],
+        'id_departamento_contable': records[i][4],
+        'id_profesor':id_profesor
+        }
+        
+        json_list.append(json)
 
-    return records
+    return json_list
 
 
 
