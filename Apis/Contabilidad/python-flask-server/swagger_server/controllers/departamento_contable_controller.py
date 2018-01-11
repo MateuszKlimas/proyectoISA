@@ -29,7 +29,7 @@ def add_departamento_contable(departamento_contable):
     cursor.execute("INSERT INTO \"departamentoContable\" VALUES (" + repr(dep.id_departamento_contable) + "," + "'" + dep.nombre_departamento_contable + "'" + ","+  "'" + dep.descripcion_departamento_contable + "'" + ","+ repr(dep.id_facultad) + ")")    
     conn.commit()
     conn.close()
-    return ""
+    return "Inserccion realizada con exito"
 
 
 def find_departamento_contable(id_departamento_contable):
@@ -53,5 +53,11 @@ def find_departamento_contable(id_departamento_contable):
 
     # retrieve the records from the database
     records = cursor.fetchall()
+    json = {
+        'id_departamento_contable':id_departamento_contable,
+        'nombre_departamento_contable': records[0][1],
+        'descripcion_departamento_contable:': records[0][2],
+        'id_facultad:': records[0][3],
+        }
     conn.close()
-    return json.dumps(records)
+    return json
