@@ -1,0 +1,176 @@
+---
+swagger: "2.0"
+info:
+  description: "API para la gestion de los departamentos de profesores"
+  version: "1.0.0"
+  title: "API departamento de profesores"
+host: "localhost:8080"
+basePath: "/DepartamentoProfesores"
+tags:
+- name: "Departamento"
+  description: "Operaciones sobre los departamentos"
+- name: "Profesor"
+  description: "Operaciones sobre los profesores"
+- name: "Docencia"
+  description: "Operaciones sobre las asignaturas asignadas a profesores"
+schemes:
+- "https"
+paths:
+  /crearDepartamento:
+    post:
+      tags:
+      - "Departamento"
+      summary: "Registrar un nuevo departamento"
+      description: ""
+      operationId: "crear_departamento"
+      parameters:
+      - in: "body"
+        name: "departamento"
+        required: true
+        schema:
+          $ref: "#/definitions/Departamento"
+      responses:
+        default:
+          description: "Se ha agregado el departamento correctamente."
+      x-swagger-router-controller: "swagger_server.controllers.departamento_controller"
+  /mostrarDepartamento:
+    get:
+      tags:
+      - "Departamento"
+      summary: "Muestra los datos de un departamento a partir de un id de departamento"
+      description: ""
+      operationId: "busqueda_departamento"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_departamento"
+        in: "query"
+        description: "id del departamento"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Datos del departamento buscado."
+          schema:
+            $ref: "#/definitions/Departamento"
+      x-swagger-router-controller: "swagger_server.controllers.departamento_controller"
+  /agregarProfesor:
+    post:
+      tags:
+      - "Profesor"
+      summary: "Agrega un profesor a la base de datos"
+      description: ""
+      operationId: "agregar_profesor"
+      parameters:
+      - in: "body"
+        name: "profesor"
+        required: true
+        schema:
+          $ref: "#/definitions/Profesor"
+      responses:
+        default:
+          description: "Se ha agregado el profesor correctamente."
+      x-swagger-router-controller: "swagger_server.controllers.profesor_controller"
+  /mostrarProfesor:
+    get:
+      tags:
+      - "Profesor"
+      summary: "Muestra un profesor a partir de un id de profesor"
+      description: ""
+      operationId: "busqueda_profesor"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_profesor"
+        in: "query"
+        description: "id del profesor"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Datos del departamento buscado."
+          schema:
+            $ref: "#/definitions/Departamento"
+      x-swagger-router-controller: "swagger_server.controllers.profesor_controller"
+  /agregarDocencia:
+    post:
+      tags:
+      - "Docencia"
+      summary: "Agrega una relacion de un profesor con una asignatura"
+      description: ""
+      operationId: "agregar_docencia"
+      parameters:
+      - in: "body"
+        name: "docencia"
+        required: true
+        schema:
+          $ref: "#/definitions/Docencia"
+      responses:
+        default:
+          description: "Se ha agregado una relacion de un profesor con una asignatura."
+      x-swagger-router-controller: "swagger_server.controllers.docencia_controller"
+  /mostrarDocencia:
+    get:
+      tags:
+      - "Docencia"
+      summary: "Devuelve relacion de profesor con asignaturas"
+      description: ""
+      operationId: "busqueda_docencia"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_profesor"
+        in: "query"
+        description: "id del profesor"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Datos de una relacion de profesor con asignaturas"
+          schema:
+            $ref: "#/definitions/Docencia"
+      x-swagger-router-controller: "swagger_server.controllers.docencia_controller"
+definitions:
+  Departamento:
+    type: "object"
+    properties:
+      id_departamento:
+        type: "integer"
+      nombreDepartamento:
+        type: "string"
+      descripcionDepartamento:
+        type: "string"
+      id_facultad:
+        type: "integer"
+  Profesor:
+    type: "object"
+    properties:
+      id_profesor:
+        type: "integer"
+      puestoProfesor:
+        type: "string"
+      categoriaProfesor:
+        type: "string"
+      dniProfesor:
+        type: "string"
+      nombreProfesor:
+        type: "string"
+      apellidosProfesor:
+        type: "string"
+      fechaComienzoDocencia:
+        type: "string"
+      direccionProfesor:
+        type: "string"
+      telefonoProfesor:
+        type: "string"
+      id_departamento:
+        type: "integer"
+  Docencia:
+    type: "object"
+    properties:
+      id_docencia:
+        type: "integer"
+      id_profesor:
+        type: "integer"
+      id_gradoAsignatura:
+        type: "integer"

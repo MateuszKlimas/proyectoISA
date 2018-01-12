@@ -31,11 +31,11 @@ class TestContableController(BaseTestCase):
 
         Añade un nueva nomina a un pas
         """
-        query_string = [('nominaContable', 56)]
+        salario_contable = NominaContable()
         response = self.client.open('/miAplicacionContbilidad/nomina_contable',
                                     method='POST',
-                                    content_type='application/json',
-                                    query_string=query_string)
+                                    data=json.dumps(salario_contable),
+                                    content_type='application/json')
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
     def test_find_contableby_id(self):

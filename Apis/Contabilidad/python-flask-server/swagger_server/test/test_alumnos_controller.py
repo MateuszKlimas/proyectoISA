@@ -17,10 +17,10 @@ class TestAlumnosController(BaseTestCase):
 
         Añade un nuevo ingreso de matricula
         """
-        contable = Alumno()
+        ingreso_matricula = Alumno()
         response = self.client.open('/miAplicacionContbilidad/matricula',
                                     method='POST',
-                                    data=json.dumps(contable),
+                                    data=json.dumps(ingreso_matricula),
                                     content_type='application/json')
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 

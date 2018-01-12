@@ -51,13 +51,24 @@ def find_pasby_id(id_pas):
  
     cursor = conn.cursor()
  
-    cursor.execute("SELECT \"nominaPAS\".\"importeNominaPAS\" FROM \"nominaPAS\" WHERE id_pas="+str(id_pas))
+    cursor.execute("SELECT * FROM \"nominaPAS\" WHERE id_pas="+str(id_pas))
  
     # retrieve the records from the database
-    records = json.dumps(cursor.fetchall())
-    
+    records = cursor.fetchall()
+    json_list = []
+    for i in range(len(records)):
+        json = {
+        'id_nomina_pas': records[i][0],
+        'fecha_pago_nomina_pas': records[i][1],
+        'importe_nomina_pas:': records[i][2],
+        'pago_nomina:': records[i][3],
+        'id_departamento_contable': records[i][4],
+        'id_pas':id_pas
+        }
+        
+        json_list.append(json)
 
-    return records
+    return json_list
 
 
 

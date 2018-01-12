@@ -1,0 +1,435 @@
+---
+swagger: "2.0"
+info:
+  description: "API para gestionar los datos de los alumnos"
+  version: "1.0.0"
+  title: "API para la gestión de alumnos"
+host: "localhost:8081"
+basePath: "/secretaria-alumnos"
+tags:
+- name: "Alumnos"
+  description: "operaciones basicas sobre los de los alumnos"
+schemes:
+- "https"
+paths:
+  /crearcuenta:
+    post:
+      tags:
+      - "Alumnos"
+      summary: "Registrar alumno"
+      description: ""
+      operationId: "crear_alumno"
+      parameters:
+      - in: "body"
+        name: "alumno"
+        required: true
+        schema:
+          $ref: "#/definitions/Alumno"
+      responses:
+        default:
+          description: "operaccion correcta"
+      x-swagger-router-controller: "swagger_server.controllers.alumnos_controller"
+  /creditosasignatura:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "creditos de cada asignatura"
+      description: "Permite consultar cuantos creditos tiene cada asigntura"
+      operationId: "consultar_creditos_asignatura"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nombre_asignatura"
+        in: "query"
+        description: "nombre de la asignatura buscada"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "devuelve el nombre de la asignatura y los creditos que tiene"
+          schema:
+            $ref: "#/definitions/Creditos"
+        404:
+          description: "La asignatura solicitada no se ha encontrado en la base de\
+            \ datos"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /asignaturasdisponibles:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Asignaturas disponibles para matricular"
+      description: "Devuelve una lista con las asignaturas en las que puede matricularse\
+        \ un alumno"
+      operationId: "get_asignaturas_disponibles"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "devuelve una lista con las asignauras disponibles para matricular"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Asignatura"
+        404:
+          description: "El alumno no se encuentra enlabase de datos"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /asignaturasmariculadas:
+    get:
+      tags:
+      - "Asignaturas"
+      summary: "Asignaturas matriculadas"
+      description: "Devuelve una lista con las asignaturas en las que esta matriculado\
+        \ el alumno"
+      operationId: "get_asignaturas_matriculadas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "devuelve una lista con las asignauras matriculadas"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Asignatura"
+        404:
+          description: "El alumno no se encuentra enlabase de datos"
+      x-swagger-router-controller: "swagger_server.controllers.asignaturas_controller"
+  /info:
+    get:
+      tags:
+      - "Informacion_personal"
+      summary: "Consulta información personal de un alumno"
+      description: "Devuelve un json con la información personal de un alumno"
+      operationId: "consultar_info"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Operacion correcta"
+          schema:
+            $ref: "#/definitions/Alumno"
+        404:
+          description: "El alumno no esta registrado en la base de datos"
+      x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
+  /cobros:
+    get:
+      tags:
+      - "Informacion_personal"
+      summary: "Consuta informacion económica de la matrícula"
+      description: "Consulta el importe total de la matrícula y el importe de los\
+        \ pagos a plazos"
+      operationId: "consultar_pagos"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Una lista con los pagos a realizar a lo largo del año y el\
+            \ precio total de la matricula"
+          schema:
+            $ref: "#/definitions/Resumen_Pagos"
+        404:
+          description: "El alumno no esta registrado en la base de datos"
+      x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
+  /notas:
+    get:
+      tags:
+      - "Informacion_personal"
+      summary: "consulta las notas"
+      description: "Consulta las notas de todas las asignaturas matriculadas, así\
+        \ como otra información relacionada con las notas de la asignatura, como el\
+        \ número de créditos de la asignatura etc."
+      operationId: "consultar_notas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del alumno"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Una lista con las notas de las asignaturas matriculadas así\
+            \ como otra información sobre la asignatura"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Nota"
+        404:
+          description: "El alumno no esta registrado en la base de datos"
+      x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
+  /creditos:
+    get:
+      tags:
+      - "Informacion_personal"
+      summary: "creditos convalidados"
+      description: "muestra una lista de los creditos convalidados del alimno asi\
+        \ como la asignatura a la que pertenecen"
+      operationId: "consultar_creditos_reconocidos"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_alumno"
+        in: "query"
+        description: "id del usuario"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "una lista con los los creditos reconocidos y la asignatura\
+            \ a la que pertenecen"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Creditos"
+        400:
+          description: "el usuario no tiene creditos reconocidos"
+        404:
+          description: "el usuario no se encuentra en la base de datos"
+      x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
+  /findpago:
+    get:
+      tags:
+      - "Informacion_personal"
+      summary: "Devuelve un recibo"
+      description: "Devuelve el recibo del mes que se especifique en la llamada"
+      operationId: "find_pago"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_usuario"
+        in: "query"
+        description: "id del usuario"
+        required: true
+        type: "string"
+      - name: "mes"
+        in: "query"
+        description: "mes correspondiente al pago buscado"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "informacion economica sobre el recibo buscado"
+          schema:
+            $ref: "#/definitions/Pago"
+        400:
+          description: "No hay pago para el mes solicitado"
+        404:
+          description: "El alumno solicitado no seencuentra en la base de datos"
+      x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
+  /matricula:
+    post:
+      tags:
+      - "Matricula"
+      summary: "Automatricula"
+      description: "Permite a un alumno realizar su automatricula"
+      operationId: "realizar_automatricula"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id_usuario"
+        in: "query"
+        description: "id del usuario"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "asignaturas"
+        required: false
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/Asignatura_Matricula"
+      responses:
+        200:
+          description: "operacion correcta"
+        400:
+          description: "id de usuario erroneo"
+      x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
+  /cambiarmatricula:
+    put:
+      tags:
+      - "Matricula"
+      summary: "Cambios en matricula"
+      description: "Permite la modificacion de los datos de la matricula"
+      operationId: "cambiar_matricula"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "id_usuario"
+        in: "query"
+        description: "id del usuario"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "datos"
+        required: false
+        schema:
+          $ref: "#/definitions/Asignatura_Matricula"
+      responses:
+        200:
+          description: "operacion correcta"
+        400:
+          description: "id de usuario erroneo"
+      x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
+  /Notas:
+    post:
+      tags:
+      - "Matricula"
+      summary: "Pone la nota a un alumno con el id de matrícula"
+      description: "Puntúa al alumno con la nota correspondiente"
+      operationId: "poner_nota"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "matriculaAsignatura"
+        description: "objeto que consta de idMatricula,idGradoAsignatura y nota a\
+          \ poner"
+        required: true
+        schema:
+          $ref: "#/definitions/Matricula_asignatura"
+      responses:
+        200:
+          description: "Alumno puntuado correctamente"
+        400:
+          description: "Ha habido un problema intentando puntuar al alumno."
+      x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
+  /getMatriculaidAsignatura:
+    get:
+      tags:
+      - "Matricula"
+      summary: "Devuelve la lista de matrículas que estan asignadas a ese id de asignatura."
+      description: "Devuelve las matriculas con ese id de gradoasignatura"
+      operationId: "get_matriculas"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "idgradoAsignatura"
+        in: "query"
+        description: "id de la asignatura."
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Matriculas devueltas correctamente"
+        400:
+          description: "Ha habido un problema intentando devolver las matriculas"
+      x-swagger-router-controller: "swagger_server.controllers.matricula_controller"
+definitions:
+  Asignatura_Matricula:
+    type: "object"
+    properties:
+      id_matriculacion:
+        type: "string"
+      numero_convocatoria:
+        type: "integer"
+      numero_matricula:
+        type: "integer"
+      nota:
+        type: "number"
+      aprobado:
+        type: "boolean"
+      id_alumno:
+        type: "string"
+      codigo_asignatura:
+        type: "string"
+  Asignatura:
+    type: "object"
+    properties:
+      nombre:
+        type: "string"
+      codigo_asignatura:
+        type: "integer"
+      creditos:
+        type: "string"
+      tipo:
+        type: "string"
+  Alumno:
+    type: "object"
+    properties:
+      nombre:
+        type: "string"
+      apellido:
+        type: "string"
+      dni:
+        type: "string"
+      direccion:
+        type: "string"
+      correo:
+        type: "string"
+      telefono:
+        type: "string"
+      id_grado:
+        type: "integer"
+  Resumen_Pagos:
+    type: "object"
+    properties:
+      importe_total_matricula:
+        type: "integer"
+      array_pagos:
+        type: "array"
+        items:
+          $ref: "#/definitions/Pago"
+  Pago:
+    type: "object"
+    properties:
+      mes:
+        type: "string"
+      importe:
+        type: "integer"
+      pagado:
+        type: "boolean"
+  Nota:
+    type: "object"
+    properties:
+      asignatura:
+        type: "string"
+      tipo:
+        type: "string"
+      creditos:
+        type: "integer"
+      aprobada:
+        type: "boolean"
+      convocatoria:
+        type: "integer"
+      nota:
+        type: "number"
+  Creditos:
+    type: "object"
+    properties:
+      creditos:
+        type: "integer"
+      asignatura:
+        type: "string"
+  Matricula_asignatura:
+    type: "object"
+    properties:
+      idMatricula:
+        type: "integer"
+      idGradoAsignatura:
+        type: "integer"
+      nota:
+        type: "number"
