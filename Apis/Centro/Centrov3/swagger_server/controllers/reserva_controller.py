@@ -30,8 +30,15 @@ def post_reserva(Reserva):
     :rtype: None
     """
     if connexion.request.is_json:
-        Reserva = Reserva.from_dict(connexion.request.get_json())
-    return 'do some magic!'
+        reserva = Reserva.from_dict(connexion.request.get_json())
+
+    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
+    conn = psycopg2.connect(conn_string)
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO reserva VALUES (" + repr(reserva.id_reserva) + "," + "'" + reserva.titularReserva + "'" + ","+  "'" + reserva.horaInicioReserva + "'" + ","+  "'" + reserva.horaFinReserva + "'" + ","+  "'" + reserva.fechaReserva + "'" + "," + repr(reserva.id_medio) + ")")
+    conn.commit()
+    conn.close()
+    return 'Reserva realizada con exito'
 
 
 def remove_reserva(idReserva):
