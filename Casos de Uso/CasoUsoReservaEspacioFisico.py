@@ -42,13 +42,13 @@ def reservaMedioFisico(idMedio):
         }
         data = { 
             "id_reserva": 1, 
-            "titularReserva": nombre, 
-            "horaInicioReserva": horaInicio,
-            "horaFinReserva": horaFin,
-            "fechaReserva": fecha,
-            "id_medio": idMedio
+            "titular_reserva": str(nombre), 
+            "hora_inicio": str(horaInicio),
+            "hora_fin": str(horaFin),
+            "fecha_reserva": str(fecha),
+            "id_medio": int(idMedio)
         }
-        response = requests.post('http://localhost:8082/Facultad/Reserva', headers = headers, data = json.dumps(data))
+        response = requests.post('http://localhost:8082/Facultad/Reserva', headers=headers, data=json.dumps(data))
         print(str(response.content))
     else:
         print("Error, saliendo del sistema")
