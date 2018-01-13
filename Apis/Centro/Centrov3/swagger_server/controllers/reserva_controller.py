@@ -1,4 +1,5 @@
 import connexion
+import psycopg2
 from swagger_server.models.reserva import Reserva
 from datetime import date, datetime
 from typing import List, Dict
@@ -20,22 +21,23 @@ def obtener_reserva(tamanoPagina, numeroPaginas):
     return 'do some magic!'
 
 
-def post_reserva(Reserva):
+def post_reserva(reserva):
     """
     Añade una reserva
     Añade un nueva reserva
     :param Reserva: La reserva que se va a añadir, en el medio.
     :type Reserva: dict | bytes
-
     :rtype: None
     """
+
     if connexion.request.is_json:
         reserva = Reserva.from_dict(connexion.request.get_json())
 
     conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
+    print("Connecting to database\n")
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO reserva VALUES (" + repr(reserva.id_reserva) + "," + "'" + reserva.titularReserva + "'" + ","+  "'" + reserva.horaInicioReserva + "'" + ","+  "'" + reserva.horaFinReserva + "'" + ","+  "'" + reserva.fechaReserva + "'" + "," + repr(reserva.id_medio) + ")")
+    cursor.execute("INSERT INTO reserva VALUES (" + str(reserva.id_reserva) + ", '" + str(reserva.titular_reserva) + "', '" + str(reserva.hora_inicio) + "', '" + str(reserva.hora_fin) + "', '" + str(reserva.fecha_reserva) + "', " + str(reserva.id_medio) + ");")
     conn.commit()
     conn.close()
     return 'Reserva realizada con exito'
