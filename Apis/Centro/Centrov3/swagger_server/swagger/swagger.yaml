@@ -538,14 +538,14 @@ paths:
         404:
           description: "Ha habido un problema al eliminar la asignatura"
       x-swagger-router-controller: "swagger_server.controllers.medio_fisico_controller"
-  /MedioFisico/{codMedio}:
+  /MedioFisico/{idCentro}:
     get:
       tags:
       - "MedioFisico"
       summary: "Obtienes una asignatura a partir de su código"
       description: "Devuelve un objeto del tipo asignatura con todos sus datos, a\
         \ partir del código del grado."
-      operationId: "medio_fisico_cod_medio_get"
+      operationId: "medio_fisico_id_centro_get"
       consumes:
       - "application/json"
       - "application/xml"
@@ -553,7 +553,7 @@ paths:
       - "application/xml"
       - "application/json"
       parameters:
-      - name: "codMedio"
+      - name: "idCentro"
         in: "path"
         description: "Codigo de la asignatura"
         required: true
