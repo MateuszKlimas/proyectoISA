@@ -10,7 +10,7 @@ def verMediosFisicos():
     ### Esto mostrará por pantalla las facultades existentes en la base de datos.
     id_facultad = input("Introduzca el ID de la facultad donde quiere hacer la reserva: ")
 
-    response = requests.get('http://localhost:8082/Facultad/MedioFisico/' + id_facultad)
+    response = requests.get('http://localhost:8080/Facultad/MedioFisico/' + id_facultad)
 
     print("\nLos medios fisicos de esta facultad son los siguientes:")
     json_data = json.loads(response.text)
@@ -50,7 +50,7 @@ def reservaMedioFisico(idMedio):
             "fecha_reserva": str(fecha),
             "id_medio": int(idMedio)
         }
-        response = requests.post('http://localhost:8082/Facultad/Reserva', headers=headers, data=json.dumps(data))
+        response = requests.post('http://localhost:8080/Facultad/Reserva', headers=headers, data=json.dumps(data))
         print(str(response.content))
     else:
         print("Error, saliendo del sistema")
