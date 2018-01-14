@@ -48,21 +48,43 @@ def post_reserva(reserva):
     """
     Añade una reserva
     Añade un nueva reserva
-    :param reserva: La reserva que se va a añadir, en el medio.
-    :type reserva: dict | bytes
-
+    :param Reserva: La reserva que se va a añadir, en el medio.
+    :type Reserva: dict | bytes
     :rtype: None
     """
+
     if connexion.request.is_json:
         reserva = Reserva.from_dict(connexion.request.get_json())
-    
-    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
+
+    conn_string = "host='localhost' dbname='Centros' user='postgres' password='Abcd-1234'"
+    print("Connecting to database\n")
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO reserva VALUES (" + repr(reserva.id_reserva) + "," + "'" + reserva.titulae_reserva + "'" + ","+  "'" + reserva.hora_inicio + "'" + ","+  "'" + reserva.hora_fin + "'" + ","+  "'" + reserva.fecha_reserva + "'" + "," + repr(reserva.id_medio) + ")")
+    cursor.execute("INSERT INTO reserva VALUES (" + str(reserva.id_reserva) + ", '" + str(reserva.titular_reserva) + "', '" + str(reserva.hora_inicio) + "', '" + str(reserva.hora_fin) + "', '" + str(reserva.fecha_reserva) + "', " + str(reserva.id_medio) + ");")
     conn.commit()
     conn.close()
-    return 'Reserva realizada con exito'    
+    return 'Reserva realizada con exito'
+
+def post_asignacion(reserva):
+    """
+    Añade una reserva
+    Añade un nueva reserva
+    :param Reserva: La reserva que se va a añadir, en el medio.
+    :type Reserva: dict | bytes
+    :rtype: None
+    """
+
+    if connexion.request.is_json:
+        reserva = Reserva.from_dict(connexion.request.get_json())
+
+    conn_string = "host='localhost' dbname='Centros' user='postgres' password='Abcd-1234'"
+    print("Connecting to database\n")
+    conn = psycopg2.connect(conn_string)
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO reserva VALUES (" + str(reserva.id_reserva) + ", 'Aula Reservada Curso Entero Profesor: " + str(reserva.titular_reserva) + "', '00:00', '00:00', '01/01/2018', " + str(reserva.id_medio) + ");")
+    conn.commit()
+    conn.close()
+    return 'Asignacion realizada con exito'
 
 
 def remove_reserva(idReserva):
