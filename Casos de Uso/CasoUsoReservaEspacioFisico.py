@@ -3,6 +3,7 @@ import connexion
 import psycopg2
 import requests
 import time
+import random
 
 
 def verMediosFisicos():
@@ -35,13 +36,14 @@ def reservaMedioFisico(idMedio):
         horaInicio = input("Introduzca la hora de inicio de la reserva (formato hh:mm): ")
         horaFin = input("Introduzca la hora de fin de la reserva (formato hh:mm): ")
         fecha = input("Introduzca la fecha de la reserva (formato dd/mm/aaaa): ")
+        res = random.randint(1000,2000)
 
         headers = { 
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }
         data = { 
-            "id_reserva": 1, 
+            "id_reserva": int(res),
             "titular_reserva": str(nombre), 
             "hora_inicio": str(horaInicio),
             "hora_fin": str(horaFin),
