@@ -1,4 +1,8 @@
 import connexion
+import psycopg2
+import sys
+import pprint
+import json
 from swagger_server.models.departamento import Departamento
 from swagger_server.models.profesor import Profesor
 from datetime import date, datetime
@@ -42,4 +46,19 @@ def busqueda_profesores(id_departamento):
 
     :rtype: Departamento
     """
-    return 'do some magic!'
+    jsons = []
+    conn_string = "host='localhost' dbname='DepartamentoProfesores' user='ISA' password='1234'"
+    conn = psycopg2.connect(conn_string)
+    cursor = conn.cursor()
+    query = "SELECT \'id_profesor\' FROM profesor WHERE id_departamento="+id_departamento+";"
+    cursor.execute(query)
+    records = cursor.fetchall()
+    
+    for row in range(cursor.rowcount):
+        json1 = {
+        "id_profesor" : records[row][0]
+        }
+        jsons.append(json1)
+    conn.close()
+    return jsons
+
