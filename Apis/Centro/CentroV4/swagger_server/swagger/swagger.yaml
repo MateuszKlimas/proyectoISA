@@ -4,7 +4,7 @@ info:
   description: "API De universidades"
   version: "0.7.0"
   title: "API para la gestión de facultades"
-host: "localhost:8082"
+host: "localhost:8080"
 basePath: "/Facultad"
 tags:
 - name: "Facultades"
@@ -657,7 +657,7 @@ paths:
       - "application/json"
       parameters:
       - in: "body"
-        name: "Reserva"
+        name: "reserva"
         description: "Reserva a Actualizar"
         required: true
         schema:
