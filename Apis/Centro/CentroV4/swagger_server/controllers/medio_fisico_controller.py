@@ -12,7 +12,7 @@ def medio_fisico_id_centro_get(idCentro):
     Obtiene un listado de todos los medios existentes en una facultad 
     Devuelve una lista con los medios fisicos
     """
-    conn_string = "host='localhost' dbname='Centros' user='postgres' password='Abcd-1234'"
+    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
     # print the connection string we will use to connect
     print ("Connecting to database\n")
     # get a connection, if a connect cannot be made an exception will be raised here
@@ -45,7 +45,7 @@ def aula_num_alumnos_get(numAlumnos):
     Obtiene un listado de todas las aulas disponibles para el numAlumnos
     Devuelve una lista con las aulas
     """
-    conn_string = "host='localhost' dbname='Centros' user='postgres' password='Abcd-1234'"
+    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
     # print the connection string we will use to connect
     print ("Connecting to database\n")
     # get a connection, if a connect cannot be made an exception will be raised here

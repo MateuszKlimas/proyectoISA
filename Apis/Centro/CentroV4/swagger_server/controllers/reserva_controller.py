@@ -56,7 +56,7 @@ def post_reserva(reserva):
     if connexion.request.is_json:
         reserva = Reserva.from_dict(connexion.request.get_json())
 
-    conn_string = "host='localhost' dbname='Centros' user='postgres' password='Abcd-1234'"
+    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
     print("Connecting to database\n")
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
@@ -77,7 +77,7 @@ def post_asignacion(reserva):
     if connexion.request.is_json:
         reserva = Reserva.from_dict(connexion.request.get_json())
 
-    conn_string = "host='localhost' dbname='Centros' user='postgres' password='Abcd-1234'"
+    conn_string = "host='localhost' dbname='Centros' user='ISA' password='1234'"
     print("Connecting to database\n")
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
