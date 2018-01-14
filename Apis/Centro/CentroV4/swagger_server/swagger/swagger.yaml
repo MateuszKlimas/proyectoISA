@@ -4,7 +4,7 @@ info:
   description: "API De universidades"
   version: "0.7.0"
   title: "API para la gestión de facultades"
-host: "localhost:8080"
+host: "localhost:8082"
 basePath: "/Facultad"
 tags:
 - name: "Facultades"
@@ -566,6 +566,33 @@ paths:
         404:
           description: "Ha habido un problema al obtener el medio"
       x-swagger-router-controller: "swagger_server.controllers.medio_fisico_controller"
+  /MedioFisicoAulas/{numAlumnos}:
+    get:
+      tags:
+      - "MedioFisico"
+      summary: "Obtiene las aulas por numero de alumnos"
+      description: "Obtiene las aulas por numero de alumnos"
+      operationId: "aula_num_alumnos_get"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "numAlumnos"
+        in: "path"
+        description: "Numero de alumnos"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Todo correcto"
+          schema:
+            $ref: "#/definitions/MedioFisicoCentro"
+        404:
+          description: "Error en la operacion"
+      x-swagger-router-controller: "swagger_server.controllers.medio_fisico_controller"
   /Reserva:
     get:
       tags:
@@ -603,10 +630,6 @@ paths:
       operationId: "post_reserva"
       consumes:
       - "application/json"
-      - "application/xml"
-      produces:
-      - "application/xml"
-      - "application/json"
       parameters:
       - in: "body"
         name: "reserva"
@@ -634,7 +657,7 @@ paths:
       - "application/json"
       parameters:
       - in: "body"
-        name: "reserva"
+        name: "Reserva"
         description: "Reserva a Actualizar"
         required: true
         schema:
@@ -672,6 +695,28 @@ paths:
             $ref: "#/definitions/Reserva"
         404:
           description: "Ha habido un problema al eliminar la reserva"
+      x-swagger-router-controller: "swagger_server.controllers.reserva_controller"
+  /reserva:
+    post:
+      tags:
+      - "Reserva"
+      summary: "Añade una reserva"
+      description: "Añade un nueva reserva"
+      operationId: "post_asignacion"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "reserva"
+        description: "La reserva que se va a añadir, en el medio."
+        required: true
+        schema:
+          $ref: "#/definitions/Reserva"
+      responses:
+        200:
+          description: "La reserva se ha creado de manera correcta."
+        404:
+          description: "No se ha podido introducir la reserva."
       x-swagger-router-controller: "swagger_server.controllers.reserva_controller"
   /Reserva/{codReserva}:
     get:
@@ -753,15 +798,15 @@ definitions:
     properties:
       id_reserva:
         type: "integer"
-      titulaeReserva:
+      titular_reserva:
         type: "string"
-      horaInicio:
+      hora_inicio:
         type: "string"
-      horaFin:
+      hora_fin:
         type: "string"
-      fechaReserva:
+      fecha_reserva:
         type: "string"
-      idMedio:
+      id_medio:
         type: "integer"
   AsignaturaCodGrado:
     type: "object"
