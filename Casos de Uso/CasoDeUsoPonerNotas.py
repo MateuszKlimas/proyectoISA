@@ -6,13 +6,13 @@ import time
 
 def verDocencia():
     ### Esto mostrará por pantalla las docencias disponibles para el profesor.
-    response = requests.get('http://localhost:8080/DepartamentoProfesores/mostrarDocencia?id_profesor=1')
+    response = requests.get('http://localhost:8081/DepartamentoProfesores/mostrarDocencia?id_profesor=6')
 
     print("\nLas asignaturas asignadas a usted son las siguientes,:")
     json_data = json.loads(response.text)
     for i in range(len(json_data)):
         stri = json_data[i]
-        response2 = requests.get('http://localhost:8082/Facultad/Gradoasignatura/'+str(stri['id_gradoAsignatura']))
+        response2 = requests.get('http://localhost:8080/Facultad/Gradoasignatura/'+str(stri['id_gradoAsignatura']))
         json_data2 = json.loads(response2.text)
         print("La asignatura con id gradoAsignatura: "+ str(stri['id_gradoAsignatura'])+"  "+str(json_data2["nombreAsignatura"])+"  "+str(json_data2["nombreGrado"]))
     n=input("Introduzca la opción que desea, pulse 0 para salir: ")
@@ -30,8 +30,8 @@ def verDocencia():
 
 def entrarEnAsingnatura(id_gradoAsignatura):
     ###Esta función sacará todas las matrículas con ese id de grado_asignatura
-    response = requests.get('http://localhost:8081/secretaria-alumnos/getMatriculaidAsignatura?idgradoAsignatura='+str(id_gradoAsignatura))
-    response2 = requests.get('http://localhost:8082/Facultad/Gradoasignatura/'+str(id_gradoAsignatura))
+    response = requests.get('http://localhost:8084/secretaria-alumnos/getMatriculaidAsignatura?idgradoAsignatura='+str(id_gradoAsignatura))
+    response2 = requests.get('http://localhost:8080/Facultad/Gradoasignatura/'+str(id_gradoAsignatura))
     json_data = json.loads(response.text)
     json_data2 = json.loads(response2.text)
     print("\nLos alumnos que están matrículados son los siguientes:")
@@ -65,7 +65,7 @@ def ponerNota(idMatriculacion):
             "idMatricula": int(idMatriculacion), 
             "nota": float(nota)
         }
-        response = requests.post('http://localhost:8081/secretaria-alumnos/Notas', headers=headers, data=json.dumps(data))
+        response = requests.post('http://localhost:8084/secretaria-alumnos/Notas', headers=headers, data=json.dumps(data))
         print(str(response.content))
     else:
         print("Saliendo del sistema.")

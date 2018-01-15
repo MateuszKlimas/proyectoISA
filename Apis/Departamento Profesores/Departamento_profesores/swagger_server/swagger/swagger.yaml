@@ -4,7 +4,7 @@ info:
   description: "API para la gestion de los departamentos de profesores"
   version: "1.0.0"
   title: "API departamento de profesores"
-host: "localhost:8080"
+host: "localhost:8081"
 basePath: "/DepartamentoProfesores"
 tags:
 - name: "Departamento"

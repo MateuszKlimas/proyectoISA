@@ -28,7 +28,7 @@ def cambiar_matricula(id_usuario, datos=None):
 
 def get_matriculas(idgradoAsignatura):
     jsons = []
-    conn_string = "host='localhost' dbname='SecretariaDeAlumnos' user='ISA' password='1234'"
+    conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
 	    # print the connection string we will use to connect
     print ("Connecting to database\n")
         # get a connection, if a connect cannot be made an exception will be raised here
@@ -62,7 +62,7 @@ def poner_nota(matriculaAsignatura):
     """
     if connexion.request.is_json:
         matriculaAsignatura = MatriculaAsignatura.from_dict(connexion.request.get_json())
-        conn_string = "host='localhost' dbname='SecretariaDeAlumnos' user='ISA' password='1234'"
+        conn_string = "host='localhost' dbname='SecretariaAlumnos' user='ISA' password='1234'"
 	    # print the connection string we will use to connect
         print ("Connecting to database\n")
         # get a connection, if a connect cannot be made an exception will be raised here

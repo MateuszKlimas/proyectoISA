@@ -31,7 +31,7 @@ def consultar_creditos_reconocidos(id_alumno):
     records =cursor.fetchall()
     json_list = []
     for i in range(len(records)):
-        direccion= ('http://localhost:5003/Facultad/asignatura/'+ str(records[i][0]))
+        direccion= ('http://localhost:8080/Facultad/asignatura/'+ str(records[i][0]))
         solicitud = requests.get(direccion)
         json_solicitud = solicitud.json()
         json1 = {

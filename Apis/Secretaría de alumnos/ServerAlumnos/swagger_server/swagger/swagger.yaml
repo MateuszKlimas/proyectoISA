@@ -4,7 +4,7 @@ info:
   description: "API para gestionar los datos de los alumnos"
   version: "1.0.0"
   title: "API para la gestión de alumnos"
-host: "localhost:8080"
+host: "localhost:8083"
 basePath: "/secretaria-alumnos"
 tags:
 - name: "Alumnos"

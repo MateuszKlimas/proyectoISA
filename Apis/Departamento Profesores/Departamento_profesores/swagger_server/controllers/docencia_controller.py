@@ -32,7 +32,7 @@ def busqueda_docencia(id_profesor):
 
     :rtype: Docencia
     """
-    conn_string = "host='localhost' dbname='Profesorado' user='ISA' password='1234'"
+    conn_string = "host='localhost' dbname='DepartamentoProfesores' user='ISA' password='1234'"
 	# print the connection string we will use to connect
     print ("Connecting to database\n")
 	# get a connection, if a connect cannot be made an exception will be raised here
