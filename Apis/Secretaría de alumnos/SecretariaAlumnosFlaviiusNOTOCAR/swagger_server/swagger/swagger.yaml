@@ -128,6 +128,28 @@ paths:
         404:
           description: "El alumno no esta registrado en la base de datos"
       x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
+  /info/{id_grado}:
+    get:
+      tags:
+        - "Informacion_personal"
+      summary: "Consulta informacion personal de un alumno según un grado "
+      operationId: "grado_alumno"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id_grado"
+          in: "path"
+          description: "Codigo del grado"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Operacion Correcta"
+          schema:
+            $ref: '#/definitions/Alumno'
+        404:
+          description: "Ningun alumno matriculado a ese grado "
+      x-swagger-router-controller: "swagger_server.controllers.informacion_personal_controller"
   /cobros:
     get:
       tags:
