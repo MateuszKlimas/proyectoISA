@@ -47,12 +47,23 @@ def grado_cod_grado_get(codGrado):
     conn = psycopg2.connect(conn_string)
     # conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM grado where grado.id_grado = " + str(codGrado))
-
-    # retrieve the records from the database
+    cursor.execute("SELECT \"id_grado\", \"nombreGrado\" FROM grado where id_grado = " + str(codGrado))
+    json_list = []
     records = cursor.fetchall()
-    conn.close()
-    return json.dumps(str(records))
+    
+    for i in range (len(records)):
+        direccion= ('http://localhost:8081/secretaria-alumnos/info/'+ str(records[i][0]))
+        solicitud = requests.get(direccion)
+        json_solicitud = solicitud.json()
+        json1 = {
+            "Nombre del grado":records[i][1],
+            "DNI del alumno":json_solicitud['dniAlumno'],
+            "Nombre del alumno":json_solicitud['nombreAlumno'],
+            "Apellidos del alumno":json_solicitud['apellidosAlumno'],
+        }
+        json_list.append(json1)
+    
+    return json_list
 
 
 def post_grado(grado):
