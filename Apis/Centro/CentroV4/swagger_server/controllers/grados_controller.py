@@ -1,5 +1,6 @@
 import connexion
 import psycopg2
+import requests
 import json
 from swagger_server.models.grado import Grado
 from swagger_server.models.universidad import Universidad
