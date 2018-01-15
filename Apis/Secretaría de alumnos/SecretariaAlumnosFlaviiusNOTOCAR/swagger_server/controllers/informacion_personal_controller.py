@@ -8,6 +8,7 @@ from datetime import date, datetime
 from typing import List, Dict
 from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
+import psycopg2
 
 
 def consultar_creditos_reconocidos(id_alumno):
@@ -70,3 +71,18 @@ def find_pago(id_usuario, mes):
     :rtype: Pago
     """
     return 'do some magic!'
+def grado_alumno(id_grado):
+    conn_string = "host='localhost' dbname='SecretariaDeAlumnos' user='ISA' password='1234'"
+    conn = psycopg2.connect(conn_string)
+    # conn.cursor will return a cursor object, you can use this cursor to perform queries
+    cursor = conn.cursor()
+    # execute our Query
+    cursor.execute("SELECT \"dniAlumno\",\"nombreAlumno\",\"apellidosAlumno\" FROM alumno WHERE id_grado = "+str(id_grado))
+    records = cursor.fetchall();
+    json1 = {
+        "dniAlumno": records[0][0],
+        "nombreAlumno": records[0][1],
+        "apellidosAlumno": records[0][2]
+    }
+    conn.close()
+    return json1
